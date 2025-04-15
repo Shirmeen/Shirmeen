@@ -74,3 +74,7 @@
 <p align="center">
   <img src="https://github-profile-trophy.vercel.app/?username=Shirmeen&theme=onedark" alt="GitHub Trophies">
 </p>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Shirmeen&show_icons=true&locale=en&layout=compact&bg_color=2f4f4f&text_color=ffffff&title_color=ffffff&icon_color=ffffff" alt="Top Languages">
+</p>

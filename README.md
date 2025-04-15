@@ -72,7 +72,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff&stroke=ffffff&ring=ffffff&fire=ffffff" alt="GitHub Streak">
+  <img src="https://streak-stats.demolab.com/?user=Shirmeen&theme=dark&hide_border=false&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" alt="GitHub Streak">
 </p>
 
 <p align="center">

@@ -1,7 +1,9 @@
 <h1 align="center">Hi 👋, I'm Shirmeen Aamir</h1>
 <h3 align="center">A passionate data scientist with a focus on ML, AI, and impactful applications</h3>
-  
-<h3 align="left">Connect with me:</h3>
+
+---
+
+<h3 align="left">📫 Connect with me:</h3>
 <p align="left">
   <a href="https://github.com/shirmeenaamir" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
@@ -14,7 +16,11 @@
   </a>
 </p>
 
-<h3 align="left">Languages and Tools:</h3>
+📧 **Email:** l215653@lhr.nu.edu.pk
+
+---
+
+<h3 align="left">🛠️ Languages and Tools:</h3>
 <p align="left">
   <img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
@@ -34,7 +40,9 @@
   <img src="https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white" alt="Microsoft SQL Server">
 </p>
 
-<h3 align="left">Certifications:</h3>
+---
+
+<h3 align="left">📜 Certifications:</h3>
 <ul>
   <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming">Kaggle: Intro to Programming</a></li>
   <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql">Kaggle: Intro to SQL</a></li>
@@ -43,7 +51,9 @@
   <li><a href="https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403">10Pearls University</a></li>
 </ul>
 
-<h3 align="left">Projects:</h3>
+---
+
+<h3 align="left">📁 Projects:</h3>
 <ul>
   <li><strong>Smart Gaming Picks</strong> – Web scraping & ML-based prediction techniques</li>
   <li><strong>EmoNet</strong> – Emotion analysis using CNN, SVM, and Random Forest</li>
@@ -51,6 +61,8 @@
   <li><strong>ADetectPro (FYP)</strong> – Alzheimer’s detection using Bayesian Graph Neural Networks</li>
   <li><strong>Weaver’s Den</strong> – A web app connecting users with textile manufacturers</li>
 </ul>
+
+---
 
 <p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=shirmeenaamir&show_icons=true&locale=en&layout=compact&bg_color=2f4f4f&text_color=ffffff&title_color=ffffff&icon_color=ffffff" alt="shirmeenaamir" /></p>
 

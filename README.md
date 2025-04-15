@@ -71,9 +71,9 @@
 </p>
 
 <p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=shirmeenaamir&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff&stroke=ffffff&ring=ffffff&fire=ffffff" alt="GitHub Streak">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff&stroke=ffffff&ring=ffffff&fire=ffffff" alt="GitHub Streak">
 </p>
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=shirmeenaamir&theme=onedark" alt="GitHub Trophies">
+  <img src="https://github-profile-trophy.vercel.app/?username=Shirmeen&theme=onedark" alt="GitHub Trophies">
 </p>

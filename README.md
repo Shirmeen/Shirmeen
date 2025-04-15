@@ -3,7 +3,8 @@
 
 ---
 
-<h3 align="left">📫 Connect with me:</h3>
+### 📫 Connect with me:
+
 <p align="left">
   <a href="https://github.com/shirmeenaamir" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
@@ -16,11 +17,12 @@
   </a>
 </p>
 
-📧 **Email:** l215653@lhr.nu.edu.pk
+📧 Email: l215653@lhr.nu.edu.pk
 
 ---
 
-<h3 align="left">🛠️ Languages and Tools:</h3>
+### 🛠️ Languages and Tools:
+
 <p align="left">
   <img src="https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
@@ -42,32 +44,36 @@
 
 ---
 
-<h3 align="left">📜 Certifications:</h3>
-<ul>
-  <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming">Kaggle: Intro to Programming</a></li>
-  <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql">Kaggle: Intro to SQL</a></li>
-  <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization">Kaggle: Data Visualization</a></li>
-  <li><a href="https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning">Kaggle: Intro to Deep Learning</a></li>
-  <li><a href="https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403">10Pearls University</a></li>
-</ul>
+### 📜 Certifications:
+
+- [Kaggle: Intro to Programming](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming)
+- [Kaggle: Intro to SQL](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql)
+- [Kaggle: Data Visualization](https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization)
+- [Kaggle: Intro to Deep Learning](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning)
+- [10Pearls University](https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403)
 
 ---
 
-<h3 align="left">📁 Projects:</h3>
-<ul>
-  <li><strong>Smart Gaming Picks</strong> – Web scraping & ML-based prediction techniques</li>
-  <li><strong>EmoNet</strong> – Emotion analysis using CNN, SVM, and Random Forest</li>
-  <li><strong>Child Growth Pattern Classification</strong> – Health prediction using Decision Trees, RF, GBM</li>
-  <li><strong>ADetectPro (FYP)</strong> – Alzheimer’s detection using Bayesian Graph Neural Networks</li>
-  <li><strong>Weaver’s Den</strong> – A web app connecting users with textile manufacturers</li>
-</ul>
+### 💼 Projects:
+
+- **Smart Gaming Picks** – Web scraping & ML-based prediction techniques
+- **EmoNet** – Emotion analysis using CNN, SVM, and Random Forest
+- **Child Growth Pattern Classification** – Health prediction using Decision Trees, RF, GBM
+- **ADetectPro (FYP)** – Alzheimer’s detection using Bayesian Graph Neural Networks
+- **Weaver’s Den** – A web app connecting users with textile manufacturers
 
 ---
 
-<p><img align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=shirmeenaamir&show_icons=true&locale=en&layout=compact&bg_color=2f4f4f&text_color=ffffff&title_color=ffffff&icon_color=ffffff" alt="shirmeenaamir" /></p>
-
-<p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=shirmeenaamir&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff&stroke=ffffff&ring=ffffff&fire=ffffff" alt="shirmeenaamir" /></p>
+### 📊 GitHub Stats:
 
 <p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=shirmeenaamir&theme=onedark" alt="trophies">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=shirmeenaamir&show_icons=true&locale=en&layout=compact&bg_color=2f4f4f&text_color=ffffff&title_color=ffffff&icon_color=ffffff" alt="Top Languages">
+</p>
+
+<p align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=shirmeenaamir&background=2f4f4f&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff&stroke=ffffff&ring=ffffff&fire=ffffff" alt="GitHub Streak">
+</p>
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=shirmeenaamir&theme=onedark" alt="GitHub Trophies">
 </p>

@@ -56,12 +56,18 @@
 
 ### 💼 Projects:
 
-- **Smart Gaming Picks** – Web scraping & ML-based prediction techniques
+- **Smart Gaming Picks** – Web scraping & ML-based prediction 
+-  https://github.com/Shirmeen/smart-gaming-picks
 - **EmoNet** – Emotion analysis using CNN, SVM, and Random Forest
+- 
 - **Child Growth Pattern Classification** – Health prediction using Decision Trees, RF, GBM
+  
 - **ADetectPro (FYP)** – Alzheimer’s detection using Bayesian Graph Neural Networks
 - **Weaver’s Den** – A web app connecting users with textile manufacturers
-
+- **Diabetes Prediction Using Concept Hierarchies and Clustering**
+-   https://github.com/Shirmeen/Diabetes-Prediction-Using-Concept-Hierarchies-and-Clustering
+-   **Thermal-Comfort-Prediction-Using-Machine-Learning-Models**
+-   https://github.com/Shirmeen/Thermal-Comfort-Prediction-Using-Machine-Learning-Models
 ---
 
 ### 📊 GitHub Stats:

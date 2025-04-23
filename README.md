@@ -59,9 +59,9 @@
 - **Smart Gaming Picks** – Web scraping & ML-based prediction 
 -  https://github.com/Shirmeen/smart-gaming-picks
 - **EmoNet** – Emotion analysis using CNN, SVM, and Random Forest
-- 
+- https://github.com/Shirmeen/EmoNet
 - **Child Growth Pattern Classification** – Health prediction using Decision Trees, RF, GBM
-  
+- https://github.com/Shirmeen/smart-gaming-picks
 - **ADetectPro (FYP)** – Alzheimer’s detection using Bayesian Graph Neural Networks
 - **Weaver’s Den** – A web app connecting users with textile manufacturers
 - **Diabetes Prediction Using Concept Hierarchies and Clustering**

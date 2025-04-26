@@ -69,6 +69,9 @@
 -   https://github.com/Shirmeen/Diabetes-Prediction-Using-Concept-Hierarchies-and-Clustering
 -   **Thermal-Comfort-Prediction-Using-Machine-Learning-Models**
 -   https://github.com/Shirmeen/Thermal-Comfort-Prediction-Using-Machine-Learning-Models
+- **Music-Playlist-Manager**
+    This is a Data Structures project implemented in C++, using linked lists to manage and interact with a music playlist dataset. 
+    https://github.com/Shirmeen/Music-Playlist-Manager
 ---
 
 ### 📊 GitHub Stats:

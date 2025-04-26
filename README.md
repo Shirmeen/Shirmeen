@@ -56,8 +56,8 @@
 
 ### 💼 Projects:
 
-- **Smart Gaming Picks** – Web scraping & ML-based prediction 
--  https://github.com/Shirmeen/smart-gaming-picks
+- [**Smart Gaming Picks** – Web scraping & ML-based prediction] (https://github.com/Shirmeen/smart-gaming-pick)
+https://github.com/Shirmeen/smart-gaming-picks
 - **EmoNet** – Emotion analysis using CNN, SVM, and Random Forest
 - https://github.com/Shirmeen/EmoNet
 - **Child Growth Pattern Classification** – Health prediction using Decision Trees, RF, GBM
@@ -72,6 +72,10 @@
 - **Music-Playlist-Manager**
 -    This is a Data Structures project implemented in C++, using linked lists to manage and interact with a music playlist dataset. 
 -  https://github.com/Shirmeen/Music-Playlist-Manager
+-  **Implement a Notepad using a Two-Dimensional Doubly Linkedlist.**
+-This is a Data Structures project implemented in C++, create a notepad that allows the user to write text on the console. For this purpose, the
+user should be able to control and track the movement of the cursor. The user can access, add and delete any part of the text.
+- https://github.com/Shirmeen/Project-Implement-a-Notepad-using-a-Two-Dimensional-Doubly-Linkedlist.
 ---
 
 ### 📊 GitHub Stats:

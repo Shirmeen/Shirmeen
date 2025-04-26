@@ -56,7 +56,7 @@
 
 ### 💼 Projects:
 
-- [Smart Gaming Picks– Web scraping & ML-based prediction] (https://github.com/Shirmeen/smart-gaming-pick)
+- [Smart Gaming Picks– Web scraping & ML-based prediction](https://github.com/Shirmeen/smart-gaming-pick)
 https://github.com/Shirmeen/smart-gaming-picks
 - **EmoNet** – Emotion analysis using CNN, SVM, and Random Forest
 - https://github.com/Shirmeen/EmoNet

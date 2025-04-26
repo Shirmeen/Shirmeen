@@ -56,7 +56,7 @@
 
 ### 💼 Projects:
  - [**GANs, AEs & VAEs Assignment**](https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-/blob/main/21L-5653_A1.docx)
- Deep learning assignment exploring Generative Adversarial Networks, Autoencoders & Variational Autoencoders
+ Deep learning assignment exploring GANs, Autoencoders & VAEs
 - [**Smart Gaming Picks**](https://github.com/Shirmeen/smart-gaming-pick)
  Web scraping & ML-based prediction
 - [**EmoNet**](https://github.com/Shirmeen/EmoNet)

@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Shirmeen/static/css/main.3a4369f9.css",
+    "main.js": "/Shirmeen/static/js/main.be55848d.js",
+    "static/js/453.438d9e50.chunk.js": "/Shirmeen/static/js/453.438d9e50.chunk.js",
+    "index.html": "/Shirmeen/index.html",
+    "main.3a4369f9.css.map": "/Shirmeen/static/css/main.3a4369f9.css.map",
+    "main.be55848d.js.map": "/Shirmeen/static/js/main.be55848d.js.map",
+    "453.438d9e50.chunk.js.map": "/Shirmeen/static/js/453.438d9e50.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3a4369f9.css",
+    "static/js/main.be55848d.js"
+  ]
+}

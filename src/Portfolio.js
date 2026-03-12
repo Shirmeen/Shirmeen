@@ -30,10 +30,23 @@ const STATS = [
 
 const EXPERIENCE = [
   {
+    role: 'Activity Coordinator',
+    company: 'Crescent Model Higher Secondary School Girls Campus',
+    duration: 'February 2026 – Present',
+    isCurrent: true,
+    description: 'Coordinating events and extracurricular activities to foster student engagement and personal development within the school community.',
+    bullets: [
+      'Organizing school-wide events and academic competitions.',
+      'Facilitating collaboration between students, teachers, and administration.',
+      'Developing and implementing engagement programs for students.',
+    ],
+    color: '#fbcfe8', accent: '#db2777',
+  },
+  {
     role: 'Associate Generative AI Engineer',
     company: 'BIG IMMERSIVE',
-    duration: 'August 2024 – Present',
-    isCurrent: true,
+    duration: 'August 2025 – January 2026',
+    isCurrent: false,
     description: 'Building generative AI solutions and AI-assisted systems with a focus on prompt engineering, model integration, and end-to-end AI workflows.',
     bullets: [
       'Developing AI-assisted systems using LangChain and Claude.',
@@ -284,8 +297,8 @@ export default function Portfolio() {
       </nav>
 
       {/* ── HERO ── */}
-      <section id="about" className="relative z-10 min-h-screen flex items-center pt-28 pb-32 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-16 w-full">
+      <section id="about" className="relative z-10 min-h-screen flex flex-col pt-28 pb-10 px-6 max-w-7xl mx-auto">
+        <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-16 w-full mt-4 md:mt-0">
 
           {/* Profile 3D area */}
           <div className="relative flex-shrink-0 animate-fadein-left" style={{ perspective:'900px' }}>
@@ -365,12 +378,12 @@ export default function Portfolio() {
         </div>
 
         {/* Stats */}
-        <div className="absolute bottom-10 left-6 right-6 max-w-7xl mx-auto px-0">
+        <div className="w-full mt-10 md:mt-16 mx-auto relative z-30">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {STATS.map((s, i) => (
               <TiltCard key={s.label} className={`pastel-card rounded-3xl p-7 text-center delay-${i+1} animate-fadein-up`}
                 style={{ borderTop:`3px solid ${s.accent}55` }}>
-                <div className="text-4xl mb-3">{s.icon}</div>
+                <div className="text-4xl mb-3 flex justify-center text-center mx-auto">{s.icon}</div>
                 <div className="text-3xl font-black mb-1" style={{ color: s.accent }}>{s.value}</div>
                 <div className="text-xs uppercase tracking-[0.18em] font-bold" style={{ color: PASTEL.textSoft }}>{s.label}</div>
               </TiltCard>
@@ -390,6 +403,7 @@ export default function Portfolio() {
           </h2>
         </div>
 
+        <div className="flex flex-col gap-10">
         {EXPERIENCE.map((exp, i) => (
           <TiltCard key={i} className="pastel-card rounded-[2rem] p-10 md:p-12 relative overflow-hidden"
             style={{ borderLeft:`5px solid ${exp.accent}` }}>
@@ -397,17 +411,18 @@ export default function Portfolio() {
             <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-[2rem]"
               style={{ background:`linear-gradient(90deg,${exp.accent}88,#bae6fd)` }} />
 
-            {exp.isCurrent && (
-              <div className="absolute top-6 right-6 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black"
-                style={{ background:'#dcfce7', color:'#16a34a', border:'1px solid #bbf7d0' }}>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                Current
-              </div>
-            )}
-
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <div className="flex flex-col md:flex-row flex-wrap md:items-start justify-between gap-4 mb-6 mt-6 md:mt-0">
               <div>
-                <h3 className="text-2xl font-black mb-1" style={{ color: PASTEL.text }}>{exp.role}</h3>
+                <h3 className="text-2xl font-black mb-1 flex items-center flex-wrap gap-3" style={{ color: PASTEL.text }}>
+                  {exp.role}
+                  {exp.isCurrent && (
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black inline-flex"
+                      style={{ background:'#dcfce7', color:'#16a34a', border:'1px solid #bbf7d0' }}>
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                      Current
+                    </span>
+                  )}
+                </h3>
                 <p className="font-bold text-lg" style={{ color: exp.accent }}>{exp.company}</p>
               </div>
               <div className="pastel-card px-4 py-2 rounded-full text-sm font-semibold flex-shrink-0" style={{ color: PASTEL.textSoft }}>
@@ -429,7 +444,8 @@ export default function Portfolio() {
               ))}
             </div>
           </TiltCard>
-        ))}
+          ))}
+        </div>
       </section>
 
       <div className="pastel-divider mx-8" />

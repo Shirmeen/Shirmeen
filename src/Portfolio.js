@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import profileImage from './image.png';
+import { Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, Factory, Ghost, Music, Dices, Circle, Bot, Hand, Github, Linkedin, Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, Globe } from 'lucide-react';
+
 
 // ─── PASTEL PALETTE ──────────────────────────────────────────────────────────
 const PASTEL = {
@@ -20,10 +22,10 @@ const PASTEL = {
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const STATS = [
-  { label: 'Projects',       value: '13+', icon: '🧩', bg: '#ede9fe', accent: '#9333ea' },
-  { label: 'Certifications', value: '6',   icon: '🎖️', bg: '#fce7f3', accent: '#db2777' },
-  { label: 'Years Exp.',     value: '1+',  icon: '💼', bg: '#dbeafe', accent: '#2563eb' },
-  { label: 'Skills',         value: '16+', icon: '💻', bg: '#dcfce7', accent: '#16a34a' },
+  { label: 'Projects',       value: '13+', icon: <Puzzle size={24} />, bg: '#ede9fe', accent: '#9333ea' },
+  { label: 'Certifications', value: '6',   icon: <Award size={24} />, bg: '#fce7f3', accent: '#db2777' },
+  { label: 'Years Exp.',     value: '1+',  icon: <Briefcase size={24} />, bg: '#dbeafe', accent: '#2563eb' },
+  { label: 'Skills',         value: '16+', icon: <Laptop size={24} />, bg: '#dcfce7', accent: '#16a34a' },
 ];
 
 const EXPERIENCE = [
@@ -44,7 +46,7 @@ const EXPERIENCE = [
 
 const SKILLS = [
   {
-    category: 'Programming & Databases', icon: '💻',
+    category: 'Programming & Databases', icon: <Laptop size={24} />,
     bg: '#ede9fe', bar: 'linear-gradient(90deg,#c084fc,#818cf8)',
     items: [
       { name:'Python',     pct:90, icon:'🐍' },
@@ -54,27 +56,27 @@ const SKILLS = [
     ],
   },
   {
-    category: 'Frameworks & Tools', icon: '🛠️',
+    category: 'Frameworks & Tools', icon: <Briefcase size={24} />,
     bg: '#dbeafe', bar: 'linear-gradient(90deg,#7dd3fc,#60a5fa)',
     items: [
       { name:'LangChain', pct:85, icon:'🔗' },
-      { name:'Power BI',  pct:80, icon:'📊' },
+      { name:'Power BI',  pct:80, icon:<BarChart size={40} /> },
       { name:'Docker',    pct:75, icon:'🐳' },
       { name:'Django',    pct:70, icon:'🌿' },
     ],
   },
   {
-    category: 'ML & Deep Learning', icon: '🧠',
+    category: 'ML & Deep Learning', icon: <BrainCircuit size={20} />,
     bg: '#fce7f3', bar: 'linear-gradient(90deg,#f9a8d4,#f472b6)',
     items: [
       { name:'TensorFlow',  pct:85, icon:'🧠' },
       { name:'PyTorch',     pct:80, icon:'🔥' },
       { name:'Scikit-Learn',pct:90, icon:'📈' },
-      { name:'OpenCV',      pct:85, icon:'👁️' },
+      { name:'OpenCV',      pct:85, icon:<Eye size={40} /> },
     ],
   },
   {
-    category: 'Generative AI', icon: '✨',
+    category: 'Generative AI', icon: <Sparkles size={20} />,
     bg: '#fefce8', bar: 'linear-gradient(90deg,#fde68a,#fb923c)',
     items: [
       { name:'GANs',            pct:85, icon:'🎨' },
@@ -86,25 +88,27 @@ const SKILLS = [
 ];
 
 const PROJECTS = [
-  { title:'ADetectPro (FYP)',     desc:"Early Alzheimer's detection using Bayesian GNNs with uncertainty quantification.", icon:'🏥', bg:'#fff7ed', accent:'#ea580c', tags:['Python','Bayesian GNN','Deep Learning'], link:'#' },
-  { title:'Generative AI Models', desc:'GANs, Autoencoders & VAEs for anomaly detection and generative modeling.',           icon:'✨', bg:'#fdf4ff', accent:'#c026d3', tags:['GANs','VAEs','Python'], link:'https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-' },
-  { title:'EmoNet',               desc:'Emotion analysis via CNN, SVM, and Random Forest for facial expression classification.',icon:'👁️',bg:'#eff6ff',accent:'#2563eb',tags:['CNN','SVM','Random Forest'],link:'https://github.com/Shirmeen/EmoNet'},
-  { title:'Smart Gaming Picks',   desc:'ML-based game recommendation & success prediction engine.', icon:'🎮', bg:'#f0fdf4', accent:'#16a34a', tags:['ML','NLP','Web Scraping'], link:'https://github.com/Shirmeen/smart-gaming-pick' },
-  { title:'Chatbot',              desc:'AI-powered chatbot using NLP techniques.',                   icon:'💬', bg:'#f5f3ff', accent:'#7c3aed', tags:['NLP','Python','Jupyter'], link:'#' },
-  { title:'Diabetes Prediction',  desc:'Predicts diabetes using concept hierarchies and clustering.', icon:'📊', bg:'#fff1f2', accent:'#e11d48', tags:['Clustering','Data Mining'], link:'#' },
-  { title:'Thermal Comfort',      desc:'Predicts thermal comfort using ML regression and classification.', icon:'🌡️', bg:'#fefce8', accent:'#ca8a04', tags:['ML','Regression'], link:'#' },
-  { title:"Weaver's Den",         desc:'Full-stack web app connecting users with textile manufacturers.', icon:'🏭', bg:'#f0f9ff', accent:'#0284c7', tags:['JavaScript','Full Stack'], link:'https://github.com/Shirmeen/Weaver-s-Den' },
-  { title:'Pacman Game',          desc:'Classic Pacman in C++ with OOP and graphics.',               icon:'👻', bg:'#fefce8', accent:'#d97706', tags:['C++','OOP','Graphics'], link:'#' },
-  { title:'Music Playlist Manager', desc:'C++ playlist manager using doubly linked lists.',           icon:'🎵', bg:'#fdf4ff', accent:'#a21caf', tags:['C++','Data Structures'], link:'https://github.com/Shirmeen/Music-Playlist-Manager' },
-  { title:'Connect-N Game',       desc:'Multi-player Connect-N in C++ with OOP.',                   icon:'🎲', bg:'#eff6ff', accent:'#1d4ed8', tags:['C++','OOP'], link:'#' },
-  { title:'Tic-Tac-Toe',         desc:'Classic game implemented in x86 Assembly.',                   icon:'⭕', bg:'#f8fafc', accent:'#475569', tags:['x86 Assembly'], link:'#' },
+  { title:'ADetectPro (FYP)',     desc:"Early Alzheimer's detection using Bayesian GNNs with uncertainty quantification.", icon:<Hospital size={40} />, bg:'#fff7ed', accent:'#ea580c', tags:['Python','Bayesian GNN','Deep Learning'], link:'https://github.com/Shirmeen/fyp' },
+  { title:'Generative AI Models', desc:'GANs, Autoencoders & VAEs for anomaly detection and generative modeling.',           icon:<Sparkles size={40} />, bg:'#fdf4ff', accent:'#c026d3', tags:['GANs','VAEs','Python'], link:'https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-' },
+  { title:'EmoNet',               desc:'Emotion analysis via CNN, SVM, and Random Forest for facial expression classification.',icon:<Eye size={40} />,bg:'#eff6ff',accent:'#2563eb',tags:['CNN','SVM','Random Forest'],link:'https://github.com/Shirmeen/EmoNet'},
+  { title:'Smart Gaming Picks',   desc:'ML-based game recommendation & success prediction engine.', icon:<Gamepad2 size={40} />, bg:'#f0fdf4', accent:'#16a34a', tags:['ML','NLP','Web Scraping'], link:'https://github.com/Shirmeen/smart-gaming-picks' },
+  { title:'Chatbot',              desc:'AI-powered chatbot using NLP techniques.',                   icon:<MessageSquare size={40} />, bg:'#f5f3ff', accent:'#7c3aed', tags:['NLP','Python','Jupyter'], link:'https://github.com/Shirmeen/Chatbot' },
+  { title:'Diabetes Prediction',  desc:'Predicts diabetes using concept hierarchies and clustering.', icon:<BarChart size={40} />, bg:'#fff1f2', accent:'#e11d48', tags:['Clustering','Data Mining'], link:'https://github.com/Shirmeen/Diabetes-Prediction-Using-Concept-Hierarchies-and-Clustering' },
+  { title:'Thermal Comfort',      desc:'Predicts thermal comfort using ML regression and classification.', icon:<Thermometer size={40} />, bg:'#fefce8', accent:'#ca8a04', tags:['ML','Regression'], link:'https://github.com/Shirmeen/Thermal-Comfort-Prediction-Using-Machine-Learning-Models' },
+  { title:"Weaver's Den",         desc:'Full-stack web app connecting users with textile manufacturers.', icon:<Factory size={40} />, bg:'#f0f9ff', accent:'#0284c7', tags:['JavaScript','Full Stack'], link:'https://github.com/Shirmeen/Weaver-s-Den' },
+  { title:'Pacman Game',          desc:'Classic Pacman in C++ with OOP and graphics.',               icon:<Ghost size={40} />, bg:'#fefce8', accent:'#d97706', tags:['C++','OOP','Graphics'], link:'https://github.com/Shirmeen/Pacman-Game-Implementation-in-C-' },
+  { title:'Music Playlist Manager', desc:'C++ playlist manager using doubly linked lists.',           icon:<Music size={40} />, bg:'#fdf4ff', accent:'#a21caf', tags:['C++','Data Structures'], link:'https://github.com/Shirmeen/Music-Playlist-Manager' },
+  { title:'Connect-N Game',       desc:'Multi-player Connect-N in C++ with OOP.',                   icon:<Dices size={40} />, bg:'#eff6ff', accent:'#1d4ed8', tags:['C++','OOP'], link:'https://github.com/Shirmeen/Connect-N-Gam' },
+  { title:'Tic-Tac-Toe',         desc:'Classic game implemented in x86 Assembly.',                   icon:<Circle size={40} />, bg:'#f8fafc', accent:'#475569', tags:['x86 Assembly'], link:'https://github.com/Shirmeen/Tic-Tac-Toe-in-Assembly-Language' },
+  { title:'2D Doubly Linked Notepad', desc:'A notepad built with a two-dimensional doubly linked list.', icon:<Database size={40} />, bg:'#f0fdf4', accent:'#22c55e', tags:['Data Structures','Linked Lists','C++'], link:'https://github.com/Shirmeen/Project-Implement-a-Notepad-using-a-Two-Dimensional-Doubly-Linkedlist.' },
+  { title:'Moot 2.0', desc:'Web application with a sleek and interactive UI.', icon:<Globe size={40} />, bg:'#ede9fe', accent:'#8b5cf6', tags:['HTML','Web Application','Vercel'], link:'https://github.com/Shirmeen/moot2.0' },
 ];
 
 const CERTS = [
   {
     name: 'Intro to Programming',
     platform: 'Kaggle',
-    icon: '📊',
+    icon: <BarChart size={20} />,
     bg: '#e0f7fa',
     accent: '#0891b2',
     link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming',
@@ -113,7 +117,7 @@ const CERTS = [
   {
     name: 'Intro to SQL',
     platform: 'Kaggle',
-    icon: '🗄️',
+    icon: <Database size={20} />,
     bg: '#e0f7fa',
     accent: '#0891b2',
     link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql',
@@ -122,7 +126,7 @@ const CERTS = [
   {
     name: 'Data Visualization',
     platform: 'Kaggle',
-    icon: '📈',
+    icon: <LineChart size={20} />,
     bg: '#e0f7fa',
     accent: '#0891b2',
     link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization',
@@ -131,7 +135,7 @@ const CERTS = [
   {
     name: 'Intro to Deep Learning',
     platform: 'Kaggle',
-    icon: '🧠',
+    icon: <BrainCircuit size={20} />,
     bg: '#e0f7fa',
     accent: '#0891b2',
     link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning',
@@ -140,7 +144,7 @@ const CERTS = [
   {
     name: 'Multi AI Agent Systems',
     platform: 'DeepLearning.AI',
-    icon: '🤖',
+    icon: <Bot size={32} />,
     bg: '#fdf4ff',
     accent: '#c026d3',
     link: 'https://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89',
@@ -149,7 +153,7 @@ const CERTS = [
   {
     name: '10Pearls University',
     platform: '10Pearls',
-    icon: '🎓',
+    icon: <GraduationCap size={32} />,
     bg: '#eff6ff',
     accent: '#4f46e5',
     link: 'https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403',
@@ -274,7 +278,7 @@ export default function Portfolio() {
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-white transition-all hover:scale-105 hover:shadow-lg active:scale-95"
             style={{ background:'linear-gradient(135deg,#c084fc,#7dd3fc)', boxShadow:'0 4px 20px rgba(192,132,252,0.4)' }}>
-            📥 Resume
+            <Download size={18} className="mr-2" /> Resume
           </a>
         </div>
       </nav>
@@ -303,14 +307,14 @@ export default function Portfolio() {
             {/* Floating badge — AI Engineer */}
             <TiltCard className="absolute top-8 -left-16 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-bobble"
               style={{ boxShadow:'0 8px 24px rgba(192,132,252,0.25)' }}>
-              <span className="text-lg">🤖</span>
+              <span className="text-lg"><Bot size={18} /></span>
               <span className="text-xs font-black" style={{ color:PASTEL.purpleDark }}>AI Engineer</span>
             </TiltCard>
 
             {/* Floating badge — Stars */}
             <TiltCard className="absolute bottom-8 -right-12 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-float3d-delay"
               style={{ boxShadow:'0 8px 24px rgba(249,168,212,0.3)' }}>
-              <span className="text-lg">🧠</span>
+              <span className="text-lg"><BrainCircuit size={18} /></span>
               <span className="text-xs font-black" style={{ color:'#db2777' }}>Gen AI</span>
             </TiltCard>
           </div>
@@ -318,7 +322,7 @@ export default function Portfolio() {
           {/* Text */}
           <div className="flex-1 text-center md:text-left animate-fadein-right">
             <p className="font-bold tracking-widest uppercase text-sm mb-3 flex items-center justify-center md:justify-start gap-2" style={{ color:PASTEL.purple }}>
-              <span style={{ animation:'blink 1s steps(1) infinite', display:'inline-block' }}>👋</span> Hello, I'm
+              <span style={{ animation:'blink 1s steps(1) infinite', display:'inline-block' }}><Hand size={16} /></span> Hello, I'm
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight tracking-tight">
               <span style={{ color: PASTEL.text }}>Shirmeen</span>{' '}
@@ -337,18 +341,18 @@ export default function Portfolio() {
             </p>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-10">
-              {[['📍','Lahore, Pakistan'],['📞','+92 316 6370030']].map(([icon, text]) => (
+              {[[(<MapPin size={16} />),'Lahore, Pakistan'],[(<Phone size={16} />), '+92 316 6370030']].map(([icon, text]) => (
                 <div key={text} className="pastel-card flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold" style={{ color: PASTEL.textSoft }}>
-                  {icon} {text}
+                  {icon} <span className="ml-1">{text}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               {[
-                { label:'GitHub', icon:'🐙', href:'https://github.com/Shirmeen', bg:'linear-gradient(135deg,#4b3875,#7c6fa0)', color:'#fff' },
-                { label:'LinkedIn', icon:'💼', href:'https://linkedin.com/in/shirmeen-amir-35ab81264', bg:'linear-gradient(135deg,#0a66c2,#0e86d4)', color:'#fff' },
-                { label:'Email', icon:'📧', href:'mailto:shirmeenaamir112@gmail.com', bg:'linear-gradient(135deg,#f9a8d4,#c084fc)', color:'#fff' },
+                { label:'GitHub', icon:<Github size={20} />, href:'https://github.com/Shirmeen', bg:'linear-gradient(135deg,#4b3875,#7c6fa0)', color:'#fff' },
+                { label:'LinkedIn', icon:<Linkedin size={20} />, href:'https://linkedin.com/in/shirmeen-amir-35ab81264', bg:'linear-gradient(135deg,#0a66c2,#0e86d4)', color:'#fff' },
+                { label:'Email', icon:<Mail size={20} />, href:'mailto:shirmeenaamir112@gmail.com', bg:'linear-gradient(135deg,#f9a8d4,#c084fc)', color:'#fff' },
               ].map(btn => (
                 <a key={btn.label} href={btn.href} target={btn.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
                   className="sheen-parent flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
@@ -380,7 +384,7 @@ export default function Portfolio() {
       {/* ── EXPERIENCE ── */}
       <section id="experience" className="relative z-10 py-28 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5">💼 Career</span>
+          <span className="pastel-badge mb-5"><Briefcase size={14} /> Career</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Work <span className="text-gradient-pastel">Experience</span>
           </h2>
@@ -433,7 +437,7 @@ export default function Portfolio() {
       {/* ── SKILLS ── */}
       <section id="skills" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(186,230,253,0.3)', borderColor:'rgba(125,211,252,0.5)', color:'#1d4ed8' }}>⌨️ Technical Expertise</span>
+          <span className="pastel-badge mb-5" style={{ background:'rgba(186,230,253,0.3)', borderColor:'rgba(125,211,252,0.5)', color:'#1d4ed8' }}><Keyboard size={14} /> Technical Expertise</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Skills & <span className="text-gradient-pastel">Technologies</span>
           </h2>
@@ -465,7 +469,7 @@ export default function Portfolio() {
       {/* ── PROJECTS ── */}
       <section id="projects" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(251,207,232,0.4)', borderColor:'rgba(249,168,212,0.5)', color:'#be185d' }}>🚀 Portfolio</span>
+          <span className="pastel-badge mb-5" style={{ background:'rgba(251,207,232,0.4)', borderColor:'rgba(249,168,212,0.5)', color:'#be185d' }}><Rocket size={14} className="mr-1 inline" /> Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Featured <span className="text-gradient-pastel">Projects</span>
           </h2>
@@ -478,31 +482,32 @@ export default function Portfolio() {
           {PROJECTS.map((p, i) => (
             <TiltCard key={i} className={`pastel-card rounded-[2rem] overflow-hidden flex flex-col group delay-${Math.min(i % 4 + 1,4)} animate-fadein-up`}
               style={{ transformOrigin:'center center' }}>
-              {/* Icon header with 3D depth */}
-              <div className="h-36 flex items-center justify-center relative overflow-hidden sheen-parent"
-                style={{ background:`linear-gradient(135deg,${p.bg},white)` }}>
-                <div className="absolute inset-0 opacity-40" style={{ background:`radial-gradient(circle at 30% 40%,${p.accent}40,transparent 65%)` }} />
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full opacity-20 blur-lg" style={{ background: p.accent }} />
-                <span className="text-5xl z-10 group-hover:scale-125 transition-transform duration-500 group-hover:-translate-y-1">{p.icon}</span>
-              </div>
+              <a href={p.link} target={p.link !== '#' ? "_blank" : undefined} rel={p.link !== '#' ? "noopener noreferrer" : undefined} className="flex flex-col flex-1 h-full cursor-pointer">
+                {/* Icon header with 3D depth */}
+                <div className="h-36 flex items-center justify-center relative overflow-hidden sheen-parent"
+                  style={{ background:`linear-gradient(135deg,${p.bg},white)` }}>
+                  <div className="absolute inset-0 opacity-40" style={{ background:`radial-gradient(circle at 30% 40%,${p.accent}40,transparent 65%)` }} />
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full opacity-20 blur-lg" style={{ background: p.accent }} />
+                  <span className="text-5xl z-10 group-hover:scale-125 transition-transform duration-500 group-hover:-translate-y-1">{p.icon}</span>
+                </div>
 
-              <div className="p-7 flex flex-col flex-1">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="font-black uppercase text-sm tracking-tight leading-snug" style={{ color: PASTEL.text }}>{p.title}</h3>
-                  <a href={p.link} target="_blank" rel="noopener noreferrer"
-                    className="text-sm font-black ml-2 flex-shrink-0 transition-all hover:scale-125"
-                    style={{ color: p.accent }}>↗</a>
+                <div className="p-7 flex flex-col flex-1">
+                  <div className="flex justify-between items-start mb-3">
+                    <h3 className="font-black uppercase text-sm tracking-tight leading-snug" style={{ color: PASTEL.text }}>{p.title}</h3>
+                    <span className="text-sm font-black ml-2 flex-shrink-0 transition-all group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1"
+                      style={{ color: p.accent }}>↗</span>
+                  </div>
+                  <p className="text-xs leading-relaxed mb-5 flex-1" style={{ color: PASTEL.textSoft }}>{p.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span key={t} className="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-all group-hover:scale-105"
+                        style={{ background: p.bg, color: p.accent, border:`1px solid ${p.accent}40` }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <p className="text-xs leading-relaxed mb-5 flex-1" style={{ color: PASTEL.textSoft }}>{p.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-all group-hover:scale-105"
-                      style={{ background: p.bg, color: p.accent, border:`1px solid ${p.accent}40` }}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </a>
             </TiltCard>
           ))}
         </div>
@@ -570,9 +575,9 @@ export default function Portfolio() {
             style={{ background:'radial-gradient(circle,#bae6fd,transparent)' }} />
 
           <div className="relative z-10">
-            <span className="pastel-badge mb-5">✉️ Get in touch</span>
+            <span className="pastel-badge mb-5"><Mail size={14} /> Get in touch</span>
             <h2 className="text-4xl md:text-5xl font-black my-5" style={{ color: PASTEL.text }}>
-              Let's Build Something <span className="text-gradient-pastel">Amazing!</span> 🚀
+              Let's Build Something <span className="text-gradient-pastel">Amazing!</span> <Rocket className="inline ml-2 text-pink-500" size={40}/>
             </h2>
             <p className="text-lg mb-10 max-w-2xl mx-auto" style={{ color: PASTEL.textSoft }}>
               I'm always excited to collaborate on innovative projects or discuss opportunities in AI and data science.
@@ -581,12 +586,12 @@ export default function Portfolio() {
               <a href="mailto:shirmeenaamir112@gmail.com"
                 className="sheen-parent px-10 py-4 rounded-2xl font-black text-lg text-white transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
                 style={{ background:'linear-gradient(135deg,#c084fc,#7dd3fc)', boxShadow:'0 8px 30px rgba(192,132,252,0.45)' }}>
-                Get In Touch 📧
+                Get In Touch <Mail size={20} className="ml-2 inline" />
               </a>
               <a href="https://github.com/Shirmeen" target="_blank" rel="noopener noreferrer"
                 className="sheen-parent pastel-card px-10 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
                 style={{ color: PASTEL.purpleDark }}>
-                View GitHub 🐙
+                View GitHub <Github size={20} className="ml-2 inline" />
               </a>
             </div>
           </div>
@@ -600,7 +605,7 @@ export default function Portfolio() {
           Data Scientist • ML Engineer • AI Enthusiast
         </p>
         <p className="text-xs" style={{ color:'#bba8d4' }}>
-          © {new Date().getFullYear()} Shirmeen Aamir — Built with ❤️ & React
+          © {new Date().getFullYear()} Shirmeen Aamir — Built with <Heart size={14} className="inline text-red-500 mx-1" fill="currentColor" /> & React
         </p>
       </footer>
 

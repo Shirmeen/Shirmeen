@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Shirmeen/static/css/main.ed45688a.css",
-    "main.js": "/Shirmeen/static/js/main.28411b75.js",
+    "main.css": "/Shirmeen/static/css/main.cd6d2a02.css",
+    "main.js": "/Shirmeen/static/js/main.cdc0f0f4.js",
     "static/js/453.438d9e50.chunk.js": "/Shirmeen/static/js/453.438d9e50.chunk.js",
     "static/media/image.png": "/Shirmeen/static/media/image.3a252c0ed06a74edba1b.png",
     "index.html": "/Shirmeen/index.html",
-    "main.ed45688a.css.map": "/Shirmeen/static/css/main.ed45688a.css.map",
-    "main.28411b75.js.map": "/Shirmeen/static/js/main.28411b75.js.map",
+    "main.cd6d2a02.css.map": "/Shirmeen/static/css/main.cd6d2a02.css.map",
+    "main.cdc0f0f4.js.map": "/Shirmeen/static/js/main.cdc0f0f4.js.map",
     "453.438d9e50.chunk.js.map": "/Shirmeen/static/js/453.438d9e50.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ed45688a.css",
-    "static/js/main.28411b75.js"
+    "static/css/main.cd6d2a02.css",
+    "static/js/main.cdc0f0f4.js"
   ]
 }

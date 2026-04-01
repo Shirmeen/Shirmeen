@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
 import profileImage from './image.png';
 import { Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, Factory, Ghost, Music, Dices, Circle, Bot, Hand, Github, Linkedin, Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, Globe } from 'lucide-react';
 
 
-// ─── PASTEL PALETTE ──────────────────────────────────────────────────────────
+// ΓöÇΓöÇΓöÇ PASTEL PALETTE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 const PASTEL = {
   lavender: '#ede9fe',
   purple:   '#c084fc',
@@ -20,9 +20,9 @@ const PASTEL = {
   textSoft: '#7c6fa0',
 };
 
-// ─── DATA ─────────────────────────────────────────────────────────────────────
+// ΓöÇΓöÇΓöÇ DATA ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 const STATS = [
-  { label: 'Projects',       value: '17+', icon: <Puzzle size={24} />, bg: '#ede9fe', accent: '#9333ea' },
+  { label: 'Projects',       value: '13+', icon: <Puzzle size={24} />, bg: '#ede9fe', accent: '#9333ea' },
   { label: 'Certifications', value: '6',   icon: <Award size={24} />, bg: '#fce7f3', accent: '#db2777' },
   { label: 'Years Exp.',     value: '1+',  icon: <Briefcase size={24} />, bg: '#dbeafe', accent: '#2563eb' },
   { label: 'Skills',         value: '16+', icon: <Laptop size={24} />, bg: '#dcfce7', accent: '#16a34a' },
@@ -32,7 +32,7 @@ const EXPERIENCE = [
   {
     role: 'Activity Coordinator',
     company: 'Crescent Model Higher Secondary School Girls Campus',
-    duration: 'February 2026 – Present',
+    duration: 'February 2026 ΓÇô Present',
     isCurrent: true,
     description: 'Coordinating events and extracurricular activities to foster student engagement and personal development within the school community.',
     bullets: [
@@ -45,7 +45,7 @@ const EXPERIENCE = [
   {
     role: 'Associate Generative AI Engineer',
     company: 'BIG IMMERSIVE',
-    duration: 'August 2025 – January 2026',
+    duration: 'August 2025 ΓÇô January 2026',
     isCurrent: false,
     description: 'Building generative AI solutions and AI-assisted systems with a focus on prompt engineering, model integration, and end-to-end AI workflows.',
     bullets: [
@@ -62,29 +62,29 @@ const SKILLS = [
     category: 'Programming & Databases', icon: <Laptop size={24} />,
     bg: '#ede9fe', bar: 'linear-gradient(90deg,#c084fc,#818cf8)',
     items: [
-      { name:'Python',     pct:90, icon:'🐍' },
-      { name:'C/C++',      pct:75, icon:'⚡' },
-      { name:'SQL',        pct:85, icon:'🗄️' },
-      { name:'PostgreSQL', pct:80, icon:'🐘' },
+      { name:'Python',     pct:90, icon:'≡ƒÉì' },
+      { name:'C/C++',      pct:75, icon:'ΓÜí' },
+      { name:'SQL',        pct:85, icon:'≡ƒùä∩╕Å' },
+      { name:'PostgreSQL', pct:80, icon:'≡ƒÉÿ' },
     ],
   },
   {
     category: 'Frameworks & Tools', icon: <Briefcase size={24} />,
     bg: '#dbeafe', bar: 'linear-gradient(90deg,#7dd3fc,#60a5fa)',
     items: [
-      { name:'LangChain', pct:85, icon:'🔗' },
+      { name:'LangChain', pct:85, icon:'≡ƒöù' },
       { name:'Power BI',  pct:80, icon:<BarChart size={40} /> },
-      { name:'Docker',    pct:75, icon:'🐳' },
-      { name:'Django',    pct:70, icon:'🌿' },
+      { name:'Docker',    pct:75, icon:'≡ƒÉ│' },
+      { name:'Django',    pct:70, icon:'≡ƒî┐' },
     ],
   },
   {
     category: 'ML & Deep Learning', icon: <BrainCircuit size={20} />,
     bg: '#fce7f3', bar: 'linear-gradient(90deg,#f9a8d4,#f472b6)',
     items: [
-      { name:'TensorFlow',  pct:85, icon:'🧠' },
-      { name:'PyTorch',     pct:80, icon:'🔥' },
-      { name:'Scikit-Learn',pct:90, icon:'📈' },
+      { name:'TensorFlow',  pct:85, icon:'≡ƒºá' },
+      { name:'PyTorch',     pct:80, icon:'≡ƒöÑ' },
+      { name:'Scikit-Learn',pct:90, icon:'≡ƒôê' },
       { name:'OpenCV',      pct:85, icon:<Eye size={40} /> },
     ],
   },
@@ -92,10 +92,10 @@ const SKILLS = [
     category: 'Generative AI', icon: <Sparkles size={20} />,
     bg: '#fefce8', bar: 'linear-gradient(90deg,#fde68a,#fb923c)',
     items: [
-      { name:'GANs',            pct:85, icon:'🎨' },
-      { name:'VAEs',            pct:80, icon:'🧊' },
-      { name:'Stable Diffusion',pct:75, icon:'🖌️' },
-      { name:'CLIP',            pct:80, icon:'🖼️' },
+      { name:'GANs',            pct:85, icon:'≡ƒÄ¿' },
+      { name:'VAEs',            pct:80, icon:'≡ƒºè' },
+      { name:'Stable Diffusion',pct:75, icon:'≡ƒûî∩╕Å' },
+      { name:'CLIP',            pct:80, icon:'≡ƒû╝∩╕Å' },
     ],
   },
 ];
@@ -114,10 +114,7 @@ const PROJECTS = [
   { title:'Connect-N Game',       desc:'Multi-player Connect-N in C++ with OOP.',                   icon:<Dices size={40} />, bg:'#eff6ff', accent:'#1d4ed8', tags:['C++','OOP'], link:'https://github.com/Shirmeen/Connect-N-Gam' },
   { title:'Tic-Tac-Toe',         desc:'Classic game implemented in x86 Assembly.',                   icon:<Circle size={40} />, bg:'#f8fafc', accent:'#475569', tags:['x86 Assembly'], link:'https://github.com/Shirmeen/Tic-Tac-Toe-in-Assembly-Language' },
   { title:'2D Doubly Linked Notepad', desc:'A notepad built with a two-dimensional doubly linked list.', icon:<Database size={40} />, bg:'#f0fdf4', accent:'#22c55e', tags:['Data Structures','Linked Lists','C++'], link:'https://github.com/Shirmeen/Project-Implement-a-Notepad-using-a-Two-Dimensional-Doubly-Linkedlist.' },
-  { title:'Moot 2.0', desc:'Web application with a sleek and interactive UI.', icon:<Globe size={40} />, bg:'#ede9fe', accent:'#8b5cf6', tags:['HTML','Web Application','Vercel'], link:'https://github.com/Shirmeen/moot2.0', live:'https://moot2-0.vercel.app' },
-  { title:'AI Workshop', desc:'Interactive AI toolkit website with a responsive pastel design, exploring modern AI tools and real-world workflows.', icon:<Bot size={40} />, bg:'#fff7ed', accent:'#f59e0b', tags:['HTML','CSS','JavaScript'], link:'https://github.com/Shirmeen/ai-workshop', live:'https://shirmeen.github.io/ai-workshop/' },
-  { title:'NOTETAKE5R', desc:'SvelteKit-powered note-taking app with Google Calendar OAuth integration and real-time sync capabilities.', icon:<Keyboard size={40} />, bg:'#f0fdfa', accent:'#0d9488', tags:['SvelteKit','Google OAuth','Full Stack'], link:'https://github.com/Shirmeen/NOTETAKE5R-' },
-  { title:'React Vite App', desc:'Modern React + TypeScript + Vite application with HMR, optimized build pipeline, and ESLint configuration.', icon:<Rocket size={40} />, bg:'#eef2ff', accent:'#4f46e5', tags:['React','TypeScript','Vite'], link:'https://github.com/Shirmeen/app', live:'https://shirmeen.github.io/app/' },
+  { title:'Moot 2.0', desc:'Web application with a sleek and interactive UI.', icon:<Globe size={40} />, bg:'#ede9fe', accent:'#8b5cf6', tags:['HTML','Web Application','Vercel'], link:'https://github.com/Shirmeen/moot2.0' },
 ];
 
 const CERTS = [
@@ -177,7 +174,7 @@ const CERTS = [
   },
 ];
 
-// ─── 3D TILT CARD ─────────────────────────────────────────────────────────────
+// ΓöÇΓöÇΓöÇ 3D TILT CARD ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 function TiltCard({ children, className = '', style = {} }) {
   const ref = useRef(null);
 
@@ -211,7 +208,7 @@ function TiltCard({ children, className = '', style = {} }) {
   );
 }
 
-// ─── SKILL BAR ────────────────────────────────────────────────────────────────
+// ΓöÇΓöÇΓöÇ SKILL BAR ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 function SkillBar({ name, pct, icon, bar }) {
   const [w, setW] = useState(0);
   const ref = useRef(null);
@@ -239,14 +236,13 @@ function SkillBar({ name, pct, icon, bar }) {
             transition: 'width 1.6s cubic-bezier(0.4,0,0.2,1)',
             boxShadow: `0 2px 10px rgba(192,132,252,0.6)`,
           }}
-
         />
       </div>
     </div>
   );
 }
 
-// ─── FLOATING ORBS ────────────────────────────────────────────────────────────
+// ΓöÇΓöÇΓöÇ FLOATING ORBS ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 const Orbs = () => (
   <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
     <div className="orb animate-float3d"        style={{ width:600, height:600, top:'-15%',  left:'-10%', background:'radial-gradient(circle, #e9d5ff88, transparent 70%)' }} />
@@ -256,24 +252,12 @@ const Orbs = () => (
   </div>
 );
 
-// ─── MAIN ─────────────────────────────────────────────────────────────────────
-const FILTERS = ['All', 'AI & ML', 'Generative AI', 'Web Dev', 'Systems'];
-
+// ΓöÇΓöÇΓöÇ MAIN ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
 export default function Portfolio() {
   const [typed, setTyped] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [speed, setSpeed] = useState(100);
-  const [activeFilter, setActiveFilter] = useState('All');
-  const [scrollProgress, setScrollProgress] = useState(0);
   const fullText = 'Generative AI Engineer';
-
-  const filteredProjects = activeFilter === 'All' ? PROJECTS : PROJECTS.filter(p => {
-    if (activeFilter === 'AI & ML') return p.tags.some(t => ['CNN','SVM','ML','NLP','Deep Learning','Bayesian GNN','Clustering','Data Mining','Regression','Random Forest','Jupyter'].includes(t));
-    if (activeFilter === 'Generative AI') return p.tags.some(t => ['GANs','VAEs','Stable Diffusion','CLIP'].includes(t));
-    if (activeFilter === 'Web Dev') return p.tags.some(t => ['JavaScript','Full Stack','HTML','SvelteKit','React','TypeScript','Vite','Vercel','Web Application','CSS'].includes(t));
-    if (activeFilter === 'Systems') return p.tags.some(t => ['C++','x86 Assembly','OOP','Data Structures','Linked Lists','Graphics'].includes(t));
-    return false;
-  });
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -291,26 +275,12 @@ export default function Portfolio() {
     return () => clearTimeout(t);
   }, [typed, deleting, speed]);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const total = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
     <div className="min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(140deg, #f0ecff 0%, #fce7f3 35%, #e0f2fe 65%, #f0fdf4 100%)' }}>
 
       <Orbs />
 
-      {/* Scroll Progress Bar */}
-      <div style={{ position:'fixed', top:0, left:0, right:0, height:'3px', zIndex:999, background:'rgba(200,170,255,0.15)' }}>
-        <div style={{ height:'100%', width:`${scrollProgress}%`, background:'linear-gradient(90deg,#c084fc,#7dd3fc,#f9a8d4)', transition:'width 0.1s linear', borderRadius:'0 2px 2px 0', boxShadow:'0 0 10px rgba(192,132,252,0.7)' }} />
-      </div>
-
-      {/* ── NAV ── */}
+      {/* ΓöÇΓöÇ NAV ΓöÇΓöÇ */}
       <nav style={{ background:'rgba(255,255,255,0.55)', backdropFilter:'blur(20px)', borderBottom:'1px solid rgba(200,170,255,0.3)', boxShadow:'0 4px 30px rgba(180,140,255,0.1)' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4">
         <div className="text-2xl font-black text-gradient-pastel cursor-pointer tracking-tight">SA</div>
@@ -326,7 +296,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* ── HERO ── */}
+      {/* ΓöÇΓöÇ HERO ΓöÇΓöÇ */}
       <section id="about" className="relative z-10 min-h-screen flex flex-col pt-28 pb-10 px-6 max-w-7xl mx-auto">
         <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-16 w-full mt-4 md:mt-0">
 
@@ -347,14 +317,14 @@ export default function Portfolio() {
               </div>
             </div>
 
-            {/* Floating badge — AI Engineer */}
+            {/* Floating badge ΓÇö AI Engineer */}
             <TiltCard className="absolute top-8 -left-16 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-bobble"
               style={{ boxShadow:'0 8px 24px rgba(192,132,252,0.25)' }}>
               <span className="text-lg"><Bot size={18} /></span>
               <span className="text-xs font-black" style={{ color:PASTEL.purpleDark }}>AI Engineer</span>
             </TiltCard>
 
-            {/* Floating badge — Stars */}
+            {/* Floating badge ΓÇö Stars */}
             <TiltCard className="absolute bottom-8 -right-12 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-float3d-delay"
               style={{ boxShadow:'0 8px 24px rgba(249,168,212,0.3)' }}>
               <span className="text-lg"><BrainCircuit size={18} /></span>
@@ -424,7 +394,7 @@ export default function Portfolio() {
 
       <div className="pastel-divider mx-8" />
 
-      {/* ── EXPERIENCE ── */}
+      {/* ΓöÇΓöÇ EXPERIENCE ΓöÇΓöÇ */}
       <section id="experience" className="relative z-10 py-28 px-6 max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="pastel-badge mb-5"><Briefcase size={14} /> Career</span>
@@ -468,7 +438,7 @@ export default function Portfolio() {
               {exp.bullets.map((b, bi) => (
                 <div key={bi} className="flex gap-3 items-start rounded-2xl p-4"
                   style={{ background: exp.color + '80', border:`1px solid ${exp.accent}20` }}>
-                  <span style={{ color: exp.accent }} className="mt-0.5 text-lg font-black">▸</span>
+                  <span style={{ color: exp.accent }} className="mt-0.5 text-lg font-black">Γû╕</span>
                   <span className="text-sm font-semibold" style={{ color: PASTEL.text }}>{b}</span>
                 </div>
               ))}
@@ -480,7 +450,7 @@ export default function Portfolio() {
 
       <div className="pastel-divider mx-8" />
 
-      {/* ── SKILLS ── */}
+      {/* ΓöÇΓöÇ SKILLS ΓöÇΓöÇ */}
       <section id="skills" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <span className="pastel-badge mb-5" style={{ background:'rgba(186,230,253,0.3)', borderColor:'rgba(125,211,252,0.5)', color:'#1d4ed8' }}><Keyboard size={14} /> Technical Expertise</span>
@@ -512,9 +482,9 @@ export default function Portfolio() {
 
       <div className="pastel-divider mx-8" />
 
-      {/* ── PROJECTS ── */}
+      {/* ΓöÇΓöÇ PROJECTS ΓöÇΓöÇ */}
       <section id="projects" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-16">
           <span className="pastel-badge mb-5" style={{ background:'rgba(251,207,232,0.4)', borderColor:'rgba(249,168,212,0.5)', color:'#be185d' }}><Rocket size={14} className="mr-1 inline" /> Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Featured <span className="text-gradient-pastel">Projects</span>
@@ -524,26 +494,11 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {FILTERS.map(f => (
-            <button key={f} onClick={() => setActiveFilter(f)}
-              className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all focus:outline-none ${activeFilter === f ? 'scale-105 shadow-md' : 'hover:bg-white/50 hover:scale-105'}`}
-              style={{
-                background: activeFilter === f ? 'linear-gradient(135deg,#c084fc,#f9a8d4)' : 'rgba(255,255,255,0.4)',
-                color: activeFilter === f ? '#fff' : PASTEL.textSoft,
-                border: `1px solid ${activeFilter === f ? 'transparent' : 'rgba(200,170,255,0.3)'}`
-              }}>
-              {f}
-            </button>
-          ))}
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7" style={{ perspective:'1400px' }}>
-          {filteredProjects.map((p, i) => (
+          {PROJECTS.map((p, i) => (
             <TiltCard key={i} className={`pastel-card rounded-[2rem] overflow-hidden flex flex-col group delay-${Math.min(i % 4 + 1,4)} animate-fadein-up`}
               style={{ transformOrigin:'center center' }}>
-              <div className="flex flex-col flex-1 h-full">
+              <a href={p.link} target={p.link !== '#' ? "_blank" : undefined} rel={p.link !== '#' ? "noopener noreferrer" : undefined} className="flex flex-col flex-1 h-full cursor-pointer">
                 {/* Icon header with 3D depth */}
                 <div className="h-36 flex items-center justify-center relative overflow-hidden sheen-parent"
                   style={{ background:`linear-gradient(135deg,${p.bg},white)` }}>
@@ -555,25 +510,20 @@ export default function Portfolio() {
                 <div className="p-7 flex flex-col flex-1">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-black uppercase text-sm tracking-tight leading-snug" style={{ color: PASTEL.text }}>{p.title}</h3>
+                    <span className="text-sm font-black ml-2 flex-shrink-0 transition-all group-hover:scale-125 group-hover:translate-x-1 group-hover:-translate-y-1"
+                      style={{ color: p.accent }}>Γåù</span>
                   </div>
                   <p className="text-xs leading-relaxed mb-5 flex-1" style={{ color: PASTEL.textSoft }}>{p.desc}</p>
-                  <div className="flex flex-wrap gap-2 mb-5">
+                  <div className="flex flex-wrap gap-2">
                     {p.tags.map((t) => (
                       <span key={t} className="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-all group-hover:scale-105"
-
                         style={{ background: p.bg, color: p.accent, border:`1px solid ${p.accent}40` }}>
                         {t}
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-3 mt-auto pt-5">
-                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105" style={{ background: p.bg, color: p.accent, border: `1px solid ${p.accent}40` }}>Code ↗</a>
-                    {p.live && (
-                      <a href={p.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105 text-white" style={{ background: p.accent, boxShadow: `0 4px 12px ${p.accent}66` }}>Live Site ↗</a>
-                    )}
-                  </div>
                 </div>
-              </div>
+              </a>
             </TiltCard>
           ))}
         </div>
@@ -581,10 +531,10 @@ export default function Portfolio() {
 
       <div className="pastel-divider mx-8" />
 
-      {/* ── CERTIFICATIONS ── */}
+      {/* ΓöÇΓöÇ CERTIFICATIONS ΓöÇΓöÇ */}
       <section id="certifications" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(224,242,254,0.6)', borderColor:'rgba(125,211,252,0.5)', color:'#0891b2' }}>🎖️ Achievements</span>
+          <span className="pastel-badge mb-5" style={{ background:'rgba(224,242,254,0.6)', borderColor:'rgba(125,211,252,0.5)', color:'#0891b2' }}>≡ƒÄû∩╕Å Achievements</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             My <span className="text-gradient-pastel">Certifications</span>
           </h2>
@@ -619,7 +569,7 @@ export default function Portfolio() {
                   <a href={cert.link} target="_blank" rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white transition-all hover:scale-105 hover:-translate-y-0.5 active:scale-95"
                     style={{ background:`linear-gradient(135deg,${cert.accent},${cert.accent}aa)`, boxShadow:`0 4px 16px ${cert.accent}44` }}>
-                    View Certificate ↗
+                    View Certificate Γåù
                   </a>
                 </div>
               </div>
@@ -630,7 +580,7 @@ export default function Portfolio() {
 
       <div className="pastel-divider mx-8" />
 
-      {/* ── CONTACT CTA ── */}
+      {/* ΓöÇΓöÇ CONTACT CTA ΓöÇΓöÇ */}
       <section id="contact" className="relative z-10 py-28 px-6">
         <TiltCard className="max-w-4xl mx-auto pastel-card rounded-[3rem] p-14 md:p-20 text-center relative overflow-hidden"
           style={{ boxShadow:'0 30px 80px rgba(192,132,252,0.2)' }}>
@@ -664,14 +614,14 @@ export default function Portfolio() {
         </TiltCard>
       </section>
 
-      {/* ── FOOTER ── */}
+      {/* ΓöÇΓöÇ FOOTER ΓöÇΓöÇ */}
       <footer className="relative z-10 py-12 text-center" style={{ borderTop:`1px solid rgba(200,170,255,0.3)` }}>
         <div className="text-2xl font-black text-gradient-pastel mb-3">SA</div>
         <p className="text-xs font-bold uppercase tracking-[0.18em] mb-1" style={{ color: PASTEL.textSoft }}>
-          Data Scientist • ML Engineer • AI Enthusiast
+          Data Scientist ΓÇó ML Engineer ΓÇó AI Enthusiast
         </p>
         <p className="text-xs" style={{ color:'#bba8d4' }}>
-          © {new Date().getFullYear()} Shirmeen Aamir — Built with <Heart size={14} className="inline text-red-500 mx-1" fill="currentColor" /> & React
+          ┬⌐ {new Date().getFullYear()} Shirmeen Aamir ΓÇö Built with <Heart size={14} className="inline text-red-500 mx-1" fill="currentColor" /> & React
         </p>
       </footer>
 

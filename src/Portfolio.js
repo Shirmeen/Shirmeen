@@ -1,31 +1,64 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import profileImage from './image.png';
-import { Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, Factory, Ghost, Music, Dices, Circle, Bot, Hand, Github, Linkedin, Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, Globe } from 'lucide-react';
-
+import { Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, Factory, Ghost, Music, Dices, Circle, Bot, Hand, Github, Linkedin, Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, Globe, ChevronLeft, ChevronRight } from 'lucide-react';
+import InteractiveCanvas from './InteractiveCanvas';
 
 // ─── PASTEL PALETTE ──────────────────────────────────────────────────────────
 const PASTEL = {
-  lavender: '#ede9fe',
-  purple:   '#c084fc',
-  purpleDark: '#9333ea',
-  blue:     '#bae6fd',
-  blueMid:  '#7dd3fc',
-  pink:     '#fbcfe8',
-  pinkMid:  '#f9a8d4',
-  mint:     '#bbf7d0',
-  peach:    '#fed7aa',
-  yellow:   '#fef08a',
+  lavender: '#120f26',
+  purple:   '#bd00ff',
+  purpleDark: '#00f0ff',
+  blue:     '#00f0ff',
+  blueMid:  '#00abff',
+  pink:     '#ff007f',
+  pinkMid:  '#ff007f',
+  mint:     '#39ff14',
+  peach:    '#ff9900',
+  yellow:   '#ffff00',
   white:    '#ffffff',
-  text:     '#4b3875',
-  textSoft: '#7c6fa0',
+  text:     '#ede9f6',
+  textSoft: '#9c95b6',
 };
+
+// ─── HERO SLIDES DATA ────────────────────────────────────────────────────────
+const HERO_SLIDES = [
+  {
+    role: 'Generative AI Engineer',
+    hello: "Hello, I'm",
+    name: 'Shirmeen Aamir',
+    highlightedRole: 'Generative AI Engineer',
+    description: (
+      <>
+        AI Engineer with a Data Science background specializing in{' '}
+        <span className="font-bold px-2.5 py-1.5 rounded text-cyan-400 bg-cyan-950/50 border border-cyan-800/40 font-mono-tech shadow-[0_0_15px_rgba(6,182,212,0.15)]">Generative AI</span>,{' '}
+        <span className="font-bold px-2.5 py-1.5 rounded text-purple-400 bg-purple-950/50 border border-purple-800/40 font-mono-tech shadow-[0_0_15px_rgba(168,85,247,0.15)]">Deep Learning</span>,{' '}
+        <span className="font-bold px-2.5 py-1.5 rounded text-pink-400 bg-pink-950/50 border border-pink-800/40 font-mono-tech shadow-[0_0_15px_rgba(236,72,153,0.15)]">Computer Vision</span>, and{' '}
+        <span className="font-bold px-2.5 py-1.5 rounded text-emerald-400 bg-emerald-950/50 border border-emerald-800/40 font-mono-tech shadow-[0_0_15px_rgba(16,185,129,0.15)]">Bayesian Modeling</span>.
+      </>
+    ),
+    badges: [
+      { text: 'AI Engineer', icon: <Bot size={16} />, className: 'absolute top-8 -left-16 pastel-card px-4 py-2 rounded-xl flex items-center gap-2 z-20 animate-bobble border-cyan-500/30', style: { boxShadow: '0 8px 24px rgba(0,240,255,0.2)' }, colorClass: 'text-cyan-400 font-mono-tech' },
+      { text: 'Gen AI', icon: <BrainCircuit size={16} />, className: 'absolute bottom-8 -right-12 pastel-card px-4 py-2 rounded-xl flex items-center gap-2 z-20 animate-float3d-delay border-purple-500/30', style: { boxShadow: '0 8px 24px rgba(189,0,255,0.2)' }, colorClass: 'text-purple-400 font-mono-tech' }
+    ],
+    buttons: [
+      { label: 'GitHub', icon: <Github size={20} />, href: 'https://github.com/Shirmeen', bg: 'linear-gradient(135deg,#0c0919,#1b133a)', color: '#00f0ff' },
+      { label: 'LinkedIn', icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/shirmeen-amir-35ab81264', bg: 'linear-gradient(135deg,#0a66c2,#0e86d4)', color: '#fff' },
+      { label: 'Email', icon: <Mail size={20} />, href: 'mailto:shirmeenaamir112@gmail.com', bg: 'linear-gradient(135deg,#bd00ff,#ff007f)', color: '#fff' }
+    ],
+    theme: {
+      gradient: 'radial-gradient(circle at center, #120c24 0%, #06040b 100%)',
+      accent: '#00f0ff',
+      textColor: '#00f0ff'
+    }
+  }
+];
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const STATS = [
-  { label: 'Projects',       value: '17+', icon: <Puzzle size={24} />, bg: '#ede9fe', accent: '#9333ea' },
-  { label: 'Certifications', value: '6',   icon: <Award size={24} />, bg: '#fce7f3', accent: '#db2777' },
-  { label: 'Years Exp.',     value: '1+',  icon: <Briefcase size={24} />, bg: '#dbeafe', accent: '#2563eb' },
-  { label: 'Skills',         value: '16+', icon: <Laptop size={24} />, bg: '#dcfce7', accent: '#16a34a' },
+  { label: 'Projects',       value: '17+', icon: <Puzzle size={24} />, bg: '#0e0b1f', accent: '#bd00ff' },
+  { label: 'Certifications', value: '6',   icon: <Award size={24} />, bg: '#1c0a1a', accent: '#ff007f' },
+  { label: 'Years Exp.',     value: '1+',  icon: <Briefcase size={24} />, bg: '#061324', accent: '#00f0ff' },
+  { label: 'Skills',         value: '16+', icon: <Laptop size={24} />, bg: '#07180e', accent: '#39ff14' },
 ];
 
 const EXPERIENCE = [
@@ -40,7 +73,7 @@ const EXPERIENCE = [
       'Facilitating collaboration between students, teachers, and administration.',
       'Developing and implementing engagement programs for students.',
     ],
-    color: '#fbcfe8', accent: '#db2777',
+    color: 'rgba(255, 0, 127, 0.1)', accent: '#ff007f',
   },
   {
     role: 'Associate Generative AI Engineer',
@@ -53,14 +86,14 @@ const EXPERIENCE = [
       'Implementing prompt engineering strategies for production systems.',
       'Building end-to-end AI workflows with modern frameworks.',
     ],
-    color: '#ede9fe', accent: '#9333ea',
+    color: 'rgba(189, 0, 255, 0.1)', accent: '#bd00ff',
   },
 ];
 
 const SKILLS = [
   {
     category: 'Programming & Databases', icon: <Laptop size={24} />,
-    bg: '#ede9fe', bar: 'linear-gradient(90deg,#c084fc,#818cf8)',
+    bg: '#0e0b1f', bar: 'linear-gradient(90deg,#bd00ff,#00f0ff)',
     items: [
       { name:'Python',     pct:90, icon:'🐍' },
       { name:'C/C++',      pct:75, icon:'⚡' },
@@ -70,7 +103,7 @@ const SKILLS = [
   },
   {
     category: 'Frameworks & Tools', icon: <Briefcase size={24} />,
-    bg: '#dbeafe', bar: 'linear-gradient(90deg,#7dd3fc,#60a5fa)',
+    bg: '#061324', bar: 'linear-gradient(90deg,#00abff,#00f0ff)',
     items: [
       { name:'LangChain', pct:85, icon:'🔗' },
       { name:'Power BI',  pct:80, icon:<BarChart size={40} /> },
@@ -80,7 +113,7 @@ const SKILLS = [
   },
   {
     category: 'ML & Deep Learning', icon: <BrainCircuit size={20} />,
-    bg: '#fce7f3', bar: 'linear-gradient(90deg,#f9a8d4,#f472b6)',
+    bg: '#1c0a1a', bar: 'linear-gradient(90deg,#ff007f,#bd00ff)',
     items: [
       { name:'TensorFlow',  pct:85, icon:'🧠' },
       { name:'PyTorch',     pct:80, icon:'🔥' },
@@ -90,7 +123,7 @@ const SKILLS = [
   },
   {
     category: 'Generative AI', icon: <Sparkles size={20} />,
-    bg: '#fefce8', bar: 'linear-gradient(90deg,#fde68a,#fb923c)',
+    bg: '#18130a', bar: 'linear-gradient(90deg,#ff9900,#ffff00)',
     items: [
       { name:'GANs',            pct:85, icon:'🎨' },
       { name:'VAEs',            pct:80, icon:'🧊' },
@@ -101,86 +134,37 @@ const SKILLS = [
 ];
 
 const PROJECTS = [
-  { title:'ADetectPro (FYP)',     desc:"Early Alzheimer's detection using Bayesian GNNs with uncertainty quantification.", icon:<Hospital size={40} />, bg:'#fff7ed', accent:'#ea580c', tags:['Python','Bayesian GNN','Deep Learning'], link:'https://github.com/Shirmeen/fyp' },
-  { title:'Generative AI Models', desc:'GANs, Autoencoders & VAEs for anomaly detection and generative modeling.',           icon:<Sparkles size={40} />, bg:'#fdf4ff', accent:'#c026d3', tags:['GANs','VAEs','Python'], link:'https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-' },
-  { title:'EmoNet',               desc:'Emotion analysis via CNN, SVM, and Random Forest for facial expression classification.',icon:<Eye size={40} />,bg:'#eff6ff',accent:'#2563eb',tags:['CNN','SVM','Random Forest'],link:'https://github.com/Shirmeen/EmoNet'},
-  { title:'Smart Gaming Picks',   desc:'ML-based game recommendation & success prediction engine.', icon:<Gamepad2 size={40} />, bg:'#f0fdf4', accent:'#16a34a', tags:['ML','NLP','Web Scraping'], link:'https://github.com/Shirmeen/smart-gaming-picks' },
-  { title:'Chatbot',              desc:'AI-powered chatbot using NLP techniques.',                   icon:<MessageSquare size={40} />, bg:'#f5f3ff', accent:'#7c3aed', tags:['NLP','Python','Jupyter'], link:'https://github.com/Shirmeen/Chatbot' },
-  { title:'Diabetes Prediction',  desc:'Predicts diabetes using concept hierarchies and clustering.', icon:<BarChart size={40} />, bg:'#fff1f2', accent:'#e11d48', tags:['Clustering','Data Mining'], link:'https://github.com/Shirmeen/Diabetes-Prediction-Using-Concept-Hierarchies-and-Clustering' },
-  { title:'Thermal Comfort',      desc:'Predicts thermal comfort using ML regression and classification.', icon:<Thermometer size={40} />, bg:'#fefce8', accent:'#ca8a04', tags:['ML','Regression'], link:'https://github.com/Shirmeen/Thermal-Comfort-Prediction-Using-Machine-Learning-Models' },
-  { title:"Weaver's Den",         desc:'Full-stack web app connecting users with textile manufacturers.', icon:<Factory size={40} />, bg:'#f0f9ff', accent:'#0284c7', tags:['JavaScript','Full Stack'], link:'https://github.com/Shirmeen/Weaver-s-Den' },
-  { title:'Pacman Game',          desc:'Classic Pacman in C++ with OOP and graphics.',               icon:<Ghost size={40} />, bg:'#fefce8', accent:'#d97706', tags:['C++','OOP','Graphics'], link:'https://github.com/Shirmeen/Pacman-Game-Implementation-in-C-' },
-  { title:'Music Playlist Manager', desc:'C++ playlist manager using doubly linked lists.',           icon:<Music size={40} />, bg:'#fdf4ff', accent:'#a21caf', tags:['C++','Data Structures'], link:'https://github.com/Shirmeen/Music-Playlist-Manager' },
-  { title:'Connect-N Game',       desc:'Multi-player Connect-N in C++ with OOP.',                   icon:<Dices size={40} />, bg:'#eff6ff', accent:'#1d4ed8', tags:['C++','OOP'], link:'https://github.com/Shirmeen/Connect-N-Gam' },
-  { title:'Tic-Tac-Toe',         desc:'Classic game implemented in x86 Assembly.',                   icon:<Circle size={40} />, bg:'#f8fafc', accent:'#475569', tags:['x86 Assembly'], link:'https://github.com/Shirmeen/Tic-Tac-Toe-in-Assembly-Language' },
-  { title:'2D Doubly Linked Notepad', desc:'A notepad built with a two-dimensional doubly linked list.', icon:<Database size={40} />, bg:'#f0fdf4', accent:'#22c55e', tags:['Data Structures','Linked Lists','C++'], link:'https://github.com/Shirmeen/Project-Implement-a-Notepad-using-a-Two-Dimensional-Doubly-Linkedlist.' },
-  { title:'Moot 2.0', desc:'Web application with a sleek and interactive UI.', icon:<Globe size={40} />, bg:'#ede9fe', accent:'#8b5cf6', tags:['HTML','Web Application','Vercel'], link:'https://github.com/Shirmeen/moot2.0', live:'https://moot2-0.vercel.app' },
-  { title:'AI Workshop', desc:'Interactive AI toolkit website with a responsive pastel design, exploring modern AI tools and real-world workflows.', icon:<Bot size={40} />, bg:'#fff7ed', accent:'#f59e0b', tags:['HTML','CSS','JavaScript'], link:'https://github.com/Shirmeen/ai-workshop', live:'https://shirmeen.github.io/ai-workshop/' },
-  { title:'NOTETAKE5R', desc:'SvelteKit-powered note-taking app with Google Calendar OAuth integration and real-time sync capabilities.', icon:<Keyboard size={40} />, bg:'#f0fdfa', accent:'#0d9488', tags:['SvelteKit','Google OAuth','Full Stack'], link:'https://github.com/Shirmeen/NOTETAKE5R-' },
-  { title:'React Vite App', desc:'Modern React + TypeScript + Vite application with HMR, optimized build pipeline, and ESLint configuration.', icon:<Rocket size={40} />, bg:'#eef2ff', accent:'#4f46e5', tags:['React','TypeScript','Vite'], link:'https://github.com/Shirmeen/app', live:'https://shirmeen.github.io/app/' },
+  { title:'ADetectPro (FYP)',     desc:"Early Alzheimer's detection using Bayesian GNNs with uncertainty quantification.", icon:<Hospital size={40} />, bg:'#1a0f00', accent:'#ea580c', tags:['Python','Bayesian GNN','Deep Learning'], link:'https://github.com/Shirmeen/fyp' },
+  { title:'Generative AI Models', desc:'GANs, Autoencoders & VAEs for anomaly detection and generative modeling.',           icon:<Sparkles size={40} />, bg:'#1a0020', accent:'#c026d3', tags:['GANs','VAEs','Python'], link:'https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-' },
+  { title:'EmoNet',               desc:'Emotion analysis via CNN, SVM, and Random Forest for facial expression classification.',icon:<Eye size={40} />,bg:'#000d1a',accent:'#2563eb',tags:['CNN','SVM','Random Forest'],link:'https://github.com/Shirmeen/EmoNet'},
+  { title:'Smart Gaming Picks',   desc:'ML-based game recommendation & success prediction engine.', icon:<Gamepad2 size={40} />, bg:'#001a0a', accent:'#16a34a', tags:['ML','NLP','Web Scraping'], link:'https://github.com/Shirmeen/smart-gaming-picks' },
+  { title:'Chatbot',              desc:'AI-powered chatbot using NLP techniques.',                   icon:<MessageSquare size={40} />, bg:'#0d0024', accent:'#7c3aed', tags:['NLP','Python','Jupyter'], link:'https://github.com/Shirmeen/Chatbot' },
+  { title:'Diabetes Prediction',  desc:'Predicts diabetes using concept hierarchies and clustering.', icon:<BarChart size={40} />, bg:'#1a000a', accent:'#e11d48', tags:['Clustering','Data Mining'], link:'https://github.com/Shirmeen/Diabetes-Prediction-Using-Concept-Hierarchies-and-Clustering' },
+  { title:'Thermal Comfort',      desc:'Predicts thermal comfort using ML regression and classification.', icon:<Thermometer size={40} />, bg:'#1a1500', accent:'#ca8a04', tags:['ML','Regression'], link:'https://github.com/Shirmeen/Thermal-Comfort-Prediction-Using-Machine-Learning-Models' },
+  { title:"Weaver's Den",         desc:'Full-stack web app connecting users with textile manufacturers.', icon:<Factory size={40} />, bg:'#001524', accent:'#0284c7', tags:['JavaScript','Full Stack'], link:'https://github.com/Shirmeen/Weaver-s-Den' },
+  { title:'Pacman Game',          desc:'Classic Pacman in C++ with OOP and graphics.',               icon:<Ghost size={40} />, bg:'#1a1500', accent:'#d97706', tags:['C++','OOP','Graphics'], link:'https://github.com/Shirmeen/Pacman-Game-Implementation-in-C-' },
+  { title:'Music Playlist Manager', desc:'C++ playlist manager using doubly linked lists.',           icon:<Music size={40} />, bg:'#1a0020', accent:'#a21caf', tags:['C++','Data Structures'], link:'https://github.com/Shirmeen/Music-Playlist-Manager' },
+  { title:'Connect-N Game',       desc:'Multi-player Connect-N in C++ with OOP.',                   icon:<Dices size={40} />, bg:'#000d1a', accent:'#1d4ed8', tags:['C++','OOP'], link:'https://github.com/Shirmeen/Connect-N-Gam' },
+  { title:'Tic-Tac-Toe',         desc:'Classic game implemented in x86 Assembly.',                   icon:<Circle size={40} />, bg:'#0a0a10', accent:'#475569', tags:['x86 Assembly'], link:'https://github.com/Shirmeen/Tic-Tac-Toe-in-Assembly-Language' },
+  { title:'2D Doubly Linked Notepad', desc:'A notepad built with a two-dimensional doubly linked list.', icon:<Database size={40} />, bg:'#001a0a', accent:'#22c55e', tags:['Data Structures','Linked Lists','C++'], link:'https://github.com/Shirmeen/Project-Implement-a-Notepad-using-a-Two-Dimensional-Doubly-Linkedlist.' },
+  { title:'Moot 2.0', desc:'Web application with a sleek and interactive UI.', icon:<Globe size={40} />, bg:'#0d0024', accent:'#8b5cf6', tags:['HTML','Web Application','Vercel'], link:'https://github.com/Shirmeen/moot2.0', live:'https://moot2-0.vercel.app' },
+  { title:'AI Workshop', desc:'Interactive AI toolkit website exploring modern AI tools and real-world workflows.', icon:<Bot size={40} />, bg:'#1a0f00', accent:'#f59e0b', tags:['HTML','CSS','JavaScript'], link:'https://github.com/Shirmeen/ai-workshop', live:'https://shirmeen.github.io/ai-workshop/' },
+  { title:'NOTETAKE5R', desc:'SvelteKit-powered note-taking app with Google Calendar OAuth integration and real-time sync.', icon:<Keyboard size={40} />, bg:'#001a14', accent:'#0d9488', tags:['SvelteKit','Google OAuth','Full Stack'], link:'https://github.com/Shirmeen/NOTETAKE5R-' },
+  { title:'React Vite App', desc:'Modern React + TypeScript + Vite application with HMR and optimized build pipeline.', icon:<Rocket size={40} />, bg:'#060024', accent:'#4f46e5', tags:['React','TypeScript','Vite'], link:'https://github.com/Shirmeen/app', live:'https://shirmeen.github.io/app/' },
 ];
 
 const CERTS = [
-  {
-    name: 'Intro to Programming',
-    platform: 'Kaggle',
-    icon: <BarChart size={20} />,
-    bg: '#e0f7fa',
-    accent: '#0891b2',
-    link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming',
-    year: '2023',
-  },
-  {
-    name: 'Intro to SQL',
-    platform: 'Kaggle',
-    icon: <Database size={20} />,
-    bg: '#e0f7fa',
-    accent: '#0891b2',
-    link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql',
-    year: '2023',
-  },
-  {
-    name: 'Data Visualization',
-    platform: 'Kaggle',
-    icon: <LineChart size={20} />,
-    bg: '#e0f7fa',
-    accent: '#0891b2',
-    link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization',
-    year: '2023',
-  },
-  {
-    name: 'Intro to Deep Learning',
-    platform: 'Kaggle',
-    icon: <BrainCircuit size={20} />,
-    bg: '#e0f7fa',
-    accent: '#0891b2',
-    link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning',
-    year: '2024',
-  },
-  {
-    name: 'Multi AI Agent Systems',
-    platform: 'DeepLearning.AI',
-    icon: <Bot size={32} />,
-    bg: '#fdf4ff',
-    accent: '#c026d3',
-    link: 'https://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89',
-    year: '2024',
-  },
-  {
-    name: '10Pearls University',
-    platform: '10Pearls',
-    icon: <GraduationCap size={32} />,
-    bg: '#eff6ff',
-    accent: '#4f46e5',
-    link: 'https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403',
-    year: '2024',
-  },
+  { name: 'Intro to Programming', platform: 'Kaggle', icon: <BarChart size={20} />, bg: '#061324', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming', year: '2023' },
+  { name: 'Intro to SQL', platform: 'Kaggle', icon: <Database size={20} />, bg: '#061324', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql', year: '2023' },
+  { name: 'Data Visualization', platform: 'Kaggle', icon: <LineChart size={20} />, bg: '#061324', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization', year: '2023' },
+  { name: 'Intro to Deep Learning', platform: 'Kaggle', icon: <BrainCircuit size={20} />, bg: '#061324', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning', year: '2024' },
+  { name: 'Multi AI Agent Systems', platform: 'DeepLearning.AI', icon: <Bot size={32} />, bg: '#1a0020', accent: '#c026d3', link: 'https://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89', year: '2024' },
+  { name: '10Pearls University', platform: '10Pearls', icon: <GraduationCap size={32} />, bg: '#060024', accent: '#4f46e5', link: 'https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403', year: '2024' },
 ];
 
 // ─── 3D TILT CARD ─────────────────────────────────────────────────────────────
 function TiltCard({ children, className = '', style = {} }) {
   const ref = useRef(null);
-
   const onMouseMove = useCallback((e) => {
     const el = ref.current;
     if (!el) return;
@@ -188,24 +172,17 @@ function TiltCard({ children, className = '', style = {} }) {
     const x = (e.clientX - left) / width  - 0.5;
     const y = (e.clientY - top)  / height - 0.5;
     el.style.transform = `perspective(900px) rotateY(${x * 16}deg) rotateX(${-y * 14}deg) translateZ(20px) scale(1.02)`;
-    el.style.boxShadow = `${-x * 20}px ${-y * 20}px 50px rgba(160,110,230,0.25)`;
+    el.style.boxShadow = `${-x * 20}px ${-y * 20}px 50px rgba(0,240,255,0.15)`;
   }, []);
-
   const onMouseLeave = useCallback(() => {
     const el = ref.current;
     if (!el) return;
     el.style.transform = 'perspective(900px) rotateY(0deg) rotateX(0deg) translateZ(0) scale(1)';
     el.style.boxShadow = '';
   }, []);
-
   return (
-    <div
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className={className}
-      style={{ transition: 'transform 0.2s ease, box-shadow 0.3s ease', ...style }}
-    >
+    <div ref={ref} onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} className={className}
+      style={{ transition: 'transform 0.2s ease, box-shadow 0.3s ease', ...style }}>
       {children}
     </div>
   );
@@ -220,52 +197,33 @@ function SkillBar({ name, pct, icon, bar }) {
     if (ref.current) obs.observe(ref.current);
     return () => obs.disconnect();
   }, [pct]);
-
   return (
     <div ref={ref} className="mb-5 group">
       <div className="flex justify-between items-center mb-2">
         <div className="flex items-center gap-2">
           <span className="text-base group-hover:scale-125 transition-transform duration-300">{icon}</span>
-          <span className="text-sm font-bold" style={{ color: PASTEL.text }}>{name}</span>
+          <span className="text-sm font-bold font-mono-tech" style={{ color: PASTEL.text }}>{name}</span>
         </div>
-        <span className="text-xs font-black" style={{ color: PASTEL.purpleDark }}>{pct}%</span>
+        <span className="text-xs font-black font-mono-tech" style={{ color: PASTEL.purpleDark }}>{pct}%</span>
       </div>
-      <div className="h-3 rounded-full overflow-hidden" style={{ background: 'rgba(0,0,0,0.06)' }}>
-        <div
-          className="h-full rounded-full"
-          style={{
-            width: `${w}%`,
-            background: bar,
-            transition: 'width 1.6s cubic-bezier(0.4,0,0.2,1)',
-            boxShadow: `0 2px 10px rgba(192,132,252,0.6)`,
-          }}
-
-        />
+      <div className="h-2.5 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(189,0,255,0.15)' }}>
+        <div className="h-full rounded-full" style={{ width: `${w}%`, background: bar, transition: 'width 1.6s cubic-bezier(0.4,0,0.2,1)', boxShadow: '0 0 15px rgba(0,240,255,0.4)' }} />
       </div>
     </div>
   );
 }
 
-// ─── FLOATING ORBS ────────────────────────────────────────────────────────────
-const Orbs = () => (
-  <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-    <div className="orb animate-float3d"        style={{ width:600, height:600, top:'-15%',  left:'-10%', background:'radial-gradient(circle, #e9d5ff88, transparent 70%)' }} />
-    <div className="orb animate-float3d-delay"  style={{ width:500, height:500, bottom:'-12%',right:'-8%', background:'radial-gradient(circle, #bae6fd77, transparent 70%)' }} />
-    <div className="orb animate-bobble"         style={{ width:350, height:350, top:'35%',   right:'15%',  background:'radial-gradient(circle, #fbcfe877, transparent 70%)' }} />
-    <div className="orb animate-float3d"        style={{ width:250, height:250, bottom:'25%',left:'8%',    background:'radial-gradient(circle, #bbf7d066, transparent 70%)' }} />
-  </div>
-);
-
 // ─── MAIN ─────────────────────────────────────────────────────────────────────
 const FILTERS = ['All', 'AI & ML', 'Generative AI', 'Web Dev', 'Systems'];
 
 export default function Portfolio() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [typed, setTyped] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [speed, setSpeed] = useState(100);
   const [activeFilter, setActiveFilter] = useState('All');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const fullText = 'Generative AI Engineer';
+  const fullText = HERO_SLIDES[currentSlide].role;
 
   const filteredProjects = activeFilter === 'All' ? PROJECTS : PROJECTS.filter(p => {
     if (activeFilter === 'AI & ML') return p.tags.some(t => ['CNN','SVM','ML','NLP','Deep Learning','Bayesian GNN','Clustering','Data Mining','Regression','Random Forest','Jupyter'].includes(t));
@@ -274,6 +232,10 @@ export default function Portfolio() {
     if (activeFilter === 'Systems') return p.tags.some(t => ['C++','x86 Assembly','OOP','Data Structures','Linked Lists','Graphics'].includes(t));
     return false;
   });
+
+
+
+  useEffect(() => { setTyped(''); setDeleting(false); setSpeed(100); }, [currentSlide]);
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -289,7 +251,7 @@ export default function Portfolio() {
       }
     }, speed);
     return () => clearTimeout(t);
-  }, [typed, deleting, speed]);
+  }, [typed, deleting, speed, fullText]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -301,105 +263,104 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: 'linear-gradient(140deg, #f0ecff 0%, #fce7f3 35%, #e0f2fe 65%, #f0fdf4 100%)' }}>
+    <div className="min-h-screen overflow-x-hidden relative bg-[#06040c]">
 
-      <Orbs />
+      {/* Cyberpunk Interactive Canvas Particles Background */}
+      <InteractiveCanvas glowColor={HERO_SLIDES[currentSlide].theme.accent} />
 
       {/* Scroll Progress Bar */}
-      <div style={{ position:'fixed', top:0, left:0, right:0, height:'3px', zIndex:999, background:'rgba(200,170,255,0.15)' }}>
-        <div style={{ height:'100%', width:`${scrollProgress}%`, background:'linear-gradient(90deg,#c084fc,#7dd3fc,#f9a8d4)', transition:'width 0.1s linear', borderRadius:'0 2px 2px 0', boxShadow:'0 0 10px rgba(192,132,252,0.7)' }} />
+      <div style={{ position:'fixed', top:0, left:0, right:0, height:'3px', zIndex:999, background:'rgba(0,240,255,0.05)' }}>
+        <div className="hud-progress" style={{ height:'100%', width:`${scrollProgress}%`, background:`linear-gradient(90deg, #bd00ff, ${HERO_SLIDES[currentSlide].theme.accent})`, transition:'width 0.1s linear', borderRadius:'0 2px 2px 0' }} />
       </div>
 
       {/* ── NAV ── */}
-      <nav style={{ background:'rgba(255,255,255,0.55)', backdropFilter:'blur(20px)', borderBottom:'1px solid rgba(200,170,255,0.3)', boxShadow:'0 4px 30px rgba(180,140,255,0.1)' }}
+      <nav style={{ background:'rgba(10,6,21,0.7)', backdropFilter:'blur(20px)', borderBottom:'1px solid rgba(189,0,255,0.15)', boxShadow:'0 4px 30px rgba(0,0,0,0.5)' }}
         className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-8 py-4">
-        <div className="text-2xl font-black text-gradient-pastel cursor-pointer tracking-tight">SA</div>
+        <div className="text-2xl font-black text-gradient-pastel cursor-pointer tracking-tight font-mono-tech">SA</div>
         <div className="hidden md:flex items-center gap-8 text-sm font-semibold" style={{ color: PASTEL.textSoft }}>
           {['About','Experience','Skills','Projects','Certifications','Contact'].map(s => (
             <a key={s} href={`#${s.toLowerCase()}`} className="nav-link hover:opacity-80">{s}</a>
           ))}
           <a href="/resume.pdf" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-white transition-all hover:scale-105 hover:shadow-lg active:scale-95"
-            style={{ background:'linear-gradient(135deg,#c084fc,#7dd3fc)', boxShadow:'0 4px 20px rgba(192,132,252,0.4)' }}>
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-white transition-all hover:scale-105 hover:shadow-lg active:scale-95 cyber-btn font-mono-tech"
+            style={{ background:`linear-gradient(135deg, #bd00ff, ${HERO_SLIDES[currentSlide].theme.accent})`, boxShadow:'0 4px 20px rgba(0,240,255,0.2)' }}>
             <Download size={18} className="mr-2" /> Resume
           </a>
         </div>
       </nav>
 
       {/* ── HERO ── */}
-      <section id="about" className="relative z-10 min-h-screen flex flex-col pt-28 pb-10 px-6 max-w-7xl mx-auto">
-        <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-16 w-full mt-4 md:mt-0">
+      <section id="about" className="relative z-10 min-h-screen flex flex-col pt-28 pb-10 px-6 max-w-7xl mx-auto justify-between">
+
+
+        {/* Slide container */}
+        <div key={currentSlide} className="flex-1 flex flex-col md:flex-row items-center justify-center gap-16 w-full mt-4 md:mt-0">
 
           {/* Profile 3D area */}
-          <div className="relative flex-shrink-0 animate-fadein-left" style={{ perspective:'900px' }}>
+          <div className="relative flex-shrink-0 animate-fadein-left p-6" style={{ perspective:'900px' }}>
+            {/* HUD Corner Crosshairs */}
+            <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2" style={{ borderColor: HERO_SLIDES[currentSlide].theme.accent, boxShadow: `0 0 10px ${HERO_SLIDES[currentSlide].theme.accent}` }} />
+            <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: HERO_SLIDES[currentSlide].theme.accent, boxShadow: `0 0 10px ${HERO_SLIDES[currentSlide].theme.accent}` }} />
+            <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: HERO_SLIDES[currentSlide].theme.accent, boxShadow: `0 0 10px ${HERO_SLIDES[currentSlide].theme.accent}` }} />
+            <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2" style={{ borderColor: HERO_SLIDES[currentSlide].theme.accent, boxShadow: `0 0 10px ${HERO_SLIDES[currentSlide].theme.accent}` }} />
+
+            {/* Glowing HUD circular scanner */}
+            <div className="absolute inset-6 rounded-full hud-pulse pointer-events-none" style={{ border: `1px solid ${HERO_SLIDES[currentSlide].theme.accent}33`, boxShadow: `inset 0 0 30px ${HERO_SLIDES[currentSlide].theme.accent}15` }} />
+
             {/* Outer spinning ring 1 */}
-            <div className="ring-spin absolute inset-0 rounded-full" style={{ margin:'-14px', border:'3px dashed rgba(192,132,252,0.4)', borderRadius:'50%' }} />
-            {/* Outer spinning ring 2 */}
-            <div className="ring-spin-r absolute inset-0 rounded-full" style={{ margin:'-28px', border:'2px dashed rgba(125,211,252,0.35)', borderRadius:'50%' }} />
+            <div className="ring-spin absolute inset-0 rounded-full pointer-events-none" style={{ margin:'4px', border:`1.5px dashed ${HERO_SLIDES[currentSlide].theme.accent}88`, borderRadius:'50%' }} />
+            {/* Outer spinning ring 2 (reverse) */}
+            <div className="ring-spin-r absolute inset-0 rounded-full pointer-events-none" style={{ margin:'-12px', border:'1px dotted rgba(189,0,255,0.4)', borderRadius:'50%' }} />
             {/* Glow behind */}
-            <div className="absolute inset-0 rounded-full animate-bobble" style={{ margin:'-30px', background:'radial-gradient(circle,rgba(192,132,252,0.35),transparent 70%)', filter:'blur(20px)' }} />
+            <div className="absolute inset-6 rounded-full animate-bobble pointer-events-none" style={{ background:`radial-gradient(circle,${HERO_SLIDES[currentSlide].theme.accent}33,transparent 70%)`, filter:'blur(25px)' }} />
 
             {/* Image frame */}
             <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full z-10 animate-float3d"
-              style={{ background:'linear-gradient(135deg,#ddd6fe,#bae6fd,#fbcfe8)', padding:'4px', boxShadow:'0 30px 70px rgba(167,139,250,0.35), 0 10px 30px rgba(167,139,250,0.2)' }}>
-              <div className="w-full h-full rounded-full overflow-hidden" style={{ background:'#fff', border:'3px solid rgba(255,255,255,0.9)' }}>
-                <img src={profileImage} alt="Shirmeen Aamir" className="w-full h-full object-cover" style={{ objectPosition:'center 30%' }} />
+              style={{ background:`linear-gradient(135deg, ${HERO_SLIDES[currentSlide].theme.accent}, #bd00ff, #ff007f)`, padding:'3px', boxShadow:`0 0 50px ${HERO_SLIDES[currentSlide].theme.accent}33, 0 10px 30px rgba(0,0,0,0.8)` }}>
+              <div className="w-full h-full rounded-full overflow-hidden" style={{ background:'#080511', border:'3px solid #080511' }}>
+                <img src={profileImage} alt="Shirmeen Aamir" className="w-full h-full object-cover opacity-90 transition-opacity duration-300 hover:opacity-100" style={{ objectPosition:'center 30%', filter: 'contrast(1.05) brightness(0.95)' }} />
               </div>
             </div>
 
-            {/* Floating badge — AI Engineer */}
-            <TiltCard className="absolute top-8 -left-16 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-bobble"
-              style={{ boxShadow:'0 8px 24px rgba(192,132,252,0.25)' }}>
-              <span className="text-lg"><Bot size={18} /></span>
-              <span className="text-xs font-black" style={{ color:PASTEL.purpleDark }}>AI Engineer</span>
-            </TiltCard>
-
-            {/* Floating badge — Stars */}
-            <TiltCard className="absolute bottom-8 -right-12 pastel-card px-4 py-2 rounded-2xl flex items-center gap-2 z-20 animate-float3d-delay"
-              style={{ boxShadow:'0 8px 24px rgba(249,168,212,0.3)' }}>
-              <span className="text-lg"><BrainCircuit size={18} /></span>
-              <span className="text-xs font-black" style={{ color:'#db2777' }}>Gen AI</span>
-            </TiltCard>
+            {/* Dynamic Badges */}
+            {HERO_SLIDES[currentSlide].badges.map((badge, idx) => (
+              <TiltCard key={idx} className={badge.className} style={badge.style}>
+                <span className="text-lg" style={{ color: HERO_SLIDES[currentSlide].theme.accent }}>{badge.icon}</span>
+                <span className={`text-xs font-black ${badge.colorClass}`}>{badge.text}</span>
+              </TiltCard>
+            ))}
           </div>
 
           {/* Text */}
           <div className="flex-1 text-center md:text-left animate-fadein-right">
-            <p className="font-bold tracking-widest uppercase text-sm mb-3 flex items-center justify-center md:justify-start gap-2" style={{ color:PASTEL.purple }}>
-              <span style={{ animation:'blink 1s steps(1) infinite', display:'inline-block' }}><Hand size={16} /></span> Hello, I'm
+            <p className="font-bold tracking-widest uppercase text-sm mb-3 flex items-center justify-center md:justify-start gap-2" style={{ color: HERO_SLIDES[currentSlide].theme.textColor }}>
+              <span style={{ animation:'blink 1s steps(1) infinite', display:'inline-block' }}><Hand size={16} /></span> {HERO_SLIDES[currentSlide].hello}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-4 leading-tight tracking-tight">
-              <span style={{ color: PASTEL.text }}>Shirmeen</span>{' '}
-              <span className="text-gradient-pastel">Aamir</span>
+              <span style={{ color: PASTEL.text }}>{HERO_SLIDES[currentSlide].name.split(' ')[0]}</span>{' '}
+              <span className="text-gradient-pastel">{HERO_SLIDES[currentSlide].name.split(' ')[1]}</span>
             </h1>
-            <div className="text-2xl md:text-3xl font-bold mb-6 h-10 flex items-center justify-center md:justify-start gap-1" style={{ color: PASTEL.purpleDark }}>
+            <div className="text-2xl md:text-3xl font-bold mb-6 h-10 flex items-center justify-center md:justify-start gap-1" style={{ color: HERO_SLIDES[currentSlide].theme.accent }}>
               <span>{typed}</span>
-              <span className="cursor inline-block w-0.5 h-7 rounded-full" style={{ background: PASTEL.purple }}>|</span>
+              <span className="cursor inline-block w-0.5 h-7 rounded-full" style={{ background: HERO_SLIDES[currentSlide].theme.accent }}>|</span>
             </div>
             <p className="text-lg leading-relaxed max-w-2xl mb-8" style={{ color: PASTEL.textSoft }}>
-              AI Engineer with a Data Science background specializing in{' '}
-              <span className="font-bold px-1.5 py-0.5 rounded-lg" style={{ color:'#9333ea', background:'#f3e8ff' }}>Generative AI</span>,{' '}
-              <span className="font-bold px-1.5 py-0.5 rounded-lg" style={{ color:'#1d4ed8', background:'#dbeafe' }}>Deep Learning</span>,{' '}
-              <span className="font-bold px-1.5 py-0.5 rounded-lg" style={{ color:'#be185d', background:'#fce7f3' }}>Computer Vision</span>, and{' '}
-              <span className="font-bold px-1.5 py-0.5 rounded-lg" style={{ color:'#047857', background:'#d1fae5' }}>Bayesian Modeling</span>.
+              {HERO_SLIDES[currentSlide].description}
             </p>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-10">
               {[[(<MapPin size={16} />),'Lahore, Pakistan'],[(<Phone size={16} />), '+92 316 6370030']].map(([icon, text]) => (
-                <div key={text} className="pastel-card flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold" style={{ color: PASTEL.textSoft }}>
+                <div key={text} className="pastel-card flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold font-mono-tech" style={{ color: PASTEL.textSoft }}>
                   {icon} <span className="ml-1">{text}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
-              {[
-                { label:'GitHub', icon:<Github size={20} />, href:'https://github.com/Shirmeen', bg:'linear-gradient(135deg,#4b3875,#7c6fa0)', color:'#fff' },
-                { label:'LinkedIn', icon:<Linkedin size={20} />, href:'https://linkedin.com/in/shirmeen-amir-35ab81264', bg:'linear-gradient(135deg,#0a66c2,#0e86d4)', color:'#fff' },
-                { label:'Email', icon:<Mail size={20} />, href:'mailto:shirmeenaamir112@gmail.com', bg:'linear-gradient(135deg,#f9a8d4,#c084fc)', color:'#fff' },
-              ].map(btn => (
+              {HERO_SLIDES[currentSlide].buttons.map(btn => (
                 <a key={btn.label} href={btn.href} target={btn.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
-                  className="sheen-parent flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
-                  style={{ background: btn.bg, color: btn.color, boxShadow:'0 6px 24px rgba(192,132,252,0.3)' }}>
+                  className="sheen-parent flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold transition-all hover:scale-105 hover:-translate-y-1 active:scale-95 font-mono-tech"
+                  style={{ background: btn.bg, color: btn.color, boxShadow:`0 6px 24px ${HERO_SLIDES[currentSlide].theme.accent}33` }}>
                   {btn.icon} {btn.label}
                 </a>
               ))}
@@ -407,15 +368,17 @@ export default function Portfolio() {
           </div>
         </div>
 
+
+
         {/* Stats */}
-        <div className="w-full mt-10 md:mt-16 mx-auto relative z-30">
+        <div className="w-full mt-6 md:mt-10 mx-auto relative z-30">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {STATS.map((s, i) => (
               <TiltCard key={s.label} className={`pastel-card rounded-3xl p-7 text-center delay-${i+1} animate-fadein-up`}
                 style={{ borderTop:`3px solid ${s.accent}55` }}>
                 <div className="text-4xl mb-3 flex justify-center text-center mx-auto">{s.icon}</div>
-                <div className="text-3xl font-black mb-1" style={{ color: s.accent }}>{s.value}</div>
-                <div className="text-xs uppercase tracking-[0.18em] font-bold" style={{ color: PASTEL.textSoft }}>{s.label}</div>
+                <div className="text-3xl font-black mb-1 font-mono-tech" style={{ color: s.accent }}>{s.value}</div>
+                <div className="text-xs uppercase tracking-[0.18em] font-bold font-mono-tech" style={{ color: PASTEL.textSoft }}>{s.label}</div>
               </TiltCard>
             ))}
           </div>
@@ -437,25 +400,24 @@ export default function Portfolio() {
         {EXPERIENCE.map((exp, i) => (
           <TiltCard key={i} className="pastel-card rounded-[2rem] p-10 md:p-12 relative overflow-hidden"
             style={{ borderLeft:`5px solid ${exp.accent}` }}>
-            {/* top gradient strip */}
             <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-[2rem]"
-              style={{ background:`linear-gradient(90deg,${exp.accent}88,#bae6fd)` }} />
+              style={{ background:`linear-gradient(90deg,${exp.accent}88,${exp.accent}22)` }} />
 
             <div className="flex flex-col md:flex-row flex-wrap md:items-start justify-between gap-4 mb-6 mt-6 md:mt-0">
               <div>
                 <h3 className="text-2xl font-black mb-1 flex items-center flex-wrap gap-3" style={{ color: PASTEL.text }}>
                   {exp.role}
                   {exp.isCurrent && (
-                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black inline-flex"
-                      style={{ background:'#dcfce7', color:'#16a34a', border:'1px solid #bbf7d0' }}>
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black inline-flex font-mono-tech"
+                      style={{ background:'rgba(57,255,20,0.1)', color:'#39ff14', border:'1px solid rgba(57,255,20,0.3)', boxShadow:'0 0 10px rgba(57,255,20,0.15)' }}>
+                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background:'#39ff14', boxShadow:'0 0 6px #39ff14' }} />
                       Current
                     </span>
                   )}
                 </h3>
-                <p className="font-bold text-lg" style={{ color: exp.accent }}>{exp.company}</p>
+                <p className="font-bold text-lg font-mono-tech" style={{ color: exp.accent }}>{exp.company}</p>
               </div>
-              <div className="pastel-card px-4 py-2 rounded-full text-sm font-semibold flex-shrink-0" style={{ color: PASTEL.textSoft }}>
+              <div className="pastel-card px-4 py-2 rounded-full text-sm font-semibold flex-shrink-0 font-mono-tech" style={{ color: PASTEL.textSoft }}>
                 {exp.duration}
               </div>
             </div>
@@ -483,7 +445,7 @@ export default function Portfolio() {
       {/* ── SKILLS ── */}
       <section id="skills" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(186,230,253,0.3)', borderColor:'rgba(125,211,252,0.5)', color:'#1d4ed8' }}><Keyboard size={14} /> Technical Expertise</span>
+          <span className="pastel-badge mb-5"><Keyboard size={14} /> Technical Expertise</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Skills & <span className="text-gradient-pastel">Technologies</span>
           </h2>
@@ -492,16 +454,12 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-2 gap-8">
           {SKILLS.map((cat, i) => (
             <TiltCard key={i} className={`pastel-card rounded-[2rem] p-9 relative overflow-hidden delay-${i+1} animate-fadein-up`}>
-              {/* top bar */}
               <div className="absolute top-0 left-0 right-0 h-1.5 rounded-t-[2rem]" style={{ background: cat.bar }} />
-              {/* bg accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-30 -mr-10 -mt-10 blur-2xl"
+              <div className="absolute top-0 right-0 w-32 h-32 rounded-full opacity-20 -mr-10 -mt-10 blur-2xl"
                 style={{ background: cat.bg }} />
-
-              <h3 className="text-lg font-black mb-8 flex items-center gap-3" style={{ color: PASTEL.text }}>
+              <h3 className="text-lg font-black mb-8 flex items-center gap-3 font-mono-tech" style={{ color: PASTEL.text }}>
                 <span className="text-2xl">{cat.icon}</span> {cat.category}
               </h3>
-
               {cat.items.map((s) => (
                 <SkillBar key={s.name} {...s} bar={cat.bar} />
               ))}
@@ -515,7 +473,7 @@ export default function Portfolio() {
       {/* ── PROJECTS ── */}
       <section id="projects" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(251,207,232,0.4)', borderColor:'rgba(249,168,212,0.5)', color:'#be185d' }}><Rocket size={14} className="mr-1 inline" /> Portfolio</span>
+          <span className="pastel-badge mb-5"><Rocket size={14} className="mr-1 inline" /> Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             Featured <span className="text-gradient-pastel">Projects</span>
           </h2>
@@ -528,11 +486,12 @@ export default function Portfolio() {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {FILTERS.map(f => (
             <button key={f} onClick={() => setActiveFilter(f)}
-              className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all focus:outline-none ${activeFilter === f ? 'scale-105 shadow-md' : 'hover:bg-white/50 hover:scale-105'}`}
+              className={`px-5 py-2.5 rounded-full font-bold text-sm transition-all focus:outline-none font-mono-tech ${activeFilter === f ? 'scale-105' : 'hover:scale-105'}`}
               style={{
-                background: activeFilter === f ? 'linear-gradient(135deg,#c084fc,#f9a8d4)' : 'rgba(255,255,255,0.4)',
+                background: activeFilter === f ? 'linear-gradient(135deg,#bd00ff,#00f0ff)' : 'rgba(10,6,21,0.7)',
                 color: activeFilter === f ? '#fff' : PASTEL.textSoft,
-                border: `1px solid ${activeFilter === f ? 'transparent' : 'rgba(200,170,255,0.3)'}`
+                border: `1px solid ${activeFilter === f ? 'rgba(0,240,255,0.5)' : 'rgba(189,0,255,0.2)'}`,
+                boxShadow: activeFilter === f ? '0 0 20px rgba(0,240,255,0.2)' : 'none'
               }}>
               {f}
             </button>
@@ -544,14 +503,12 @@ export default function Portfolio() {
             <TiltCard key={i} className={`pastel-card rounded-[2rem] overflow-hidden flex flex-col group delay-${Math.min(i % 4 + 1,4)} animate-fadein-up`}
               style={{ transformOrigin:'center center' }}>
               <div className="flex flex-col flex-1 h-full">
-                {/* Icon header with 3D depth */}
                 <div className="h-36 flex items-center justify-center relative overflow-hidden sheen-parent"
-                  style={{ background:`linear-gradient(135deg,${p.bg},white)` }}>
+                  style={{ background:`linear-gradient(135deg,${p.bg},#0a0615)` }}>
                   <div className="absolute inset-0 opacity-40" style={{ background:`radial-gradient(circle at 30% 40%,${p.accent}40,transparent 65%)` }} />
                   <div className="absolute top-4 right-4 w-10 h-10 rounded-full opacity-20 blur-lg" style={{ background: p.accent }} />
                   <span className="text-5xl z-10 group-hover:scale-125 transition-transform duration-500 group-hover:-translate-y-1">{p.icon}</span>
                 </div>
-
                 <div className="p-7 flex flex-col flex-1">
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="font-black uppercase text-sm tracking-tight leading-snug" style={{ color: PASTEL.text }}>{p.title}</h3>
@@ -559,17 +516,16 @@ export default function Portfolio() {
                   <p className="text-xs leading-relaxed mb-5 flex-1" style={{ color: PASTEL.textSoft }}>{p.desc}</p>
                   <div className="flex flex-wrap gap-2 mb-5">
                     {p.tags.map((t) => (
-                      <span key={t} className="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-all group-hover:scale-105"
-
-                        style={{ background: p.bg, color: p.accent, border:`1px solid ${p.accent}40` }}>
+                      <span key={t} className="px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest transition-all group-hover:scale-105 font-mono-tech"
+                        style={{ background: 'rgba(189,0,255,0.1)', color: '#00f0ff', border:'1px solid rgba(0,240,255,0.3)' }}>
                         {t}
                       </span>
                     ))}
                   </div>
                   <div className="flex gap-3 mt-auto pt-5">
-                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105" style={{ background: p.bg, color: p.accent, border: `1px solid ${p.accent}40` }}>Code ↗</a>
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105 font-mono-tech" style={{ background: 'rgba(189,0,255,0.1)', color: '#fff', border: '1px solid rgba(189,0,255,0.3)' }}>Code ↗</a>
                     {p.live && (
-                      <a href={p.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105 text-white" style={{ background: p.accent, boxShadow: `0 4px 12px ${p.accent}66` }}>Live Site ↗</a>
+                      <a href={p.live} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center py-2.5 rounded-xl text-xs font-black transition-all hover:scale-105 text-white font-mono-tech" style={{ background: 'linear-gradient(135deg,#bd00ff,#00f0ff)', boxShadow: '0 4px 12px rgba(0,240,255,0.3)' }}>Live Site ↗</a>
                     )}
                   </div>
                 </div>
@@ -584,7 +540,7 @@ export default function Portfolio() {
       {/* ── CERTIFICATIONS ── */}
       <section id="certifications" className="relative z-10 py-28 px-6 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="pastel-badge mb-5" style={{ background:'rgba(224,242,254,0.6)', borderColor:'rgba(125,211,252,0.5)', color:'#0891b2' }}>🎖️ Achievements</span>
+          <span className="pastel-badge mb-5">🎖️ Achievements</span>
           <h2 className="text-4xl md:text-5xl font-black mt-4" style={{ color: PASTEL.text }}>
             My <span className="text-gradient-pastel">Certifications</span>
           </h2>
@@ -594,30 +550,23 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
           {CERTS.map((cert, i) => (
             <TiltCard key={i} className={`pastel-card rounded-[2rem] overflow-hidden flex flex-col group delay-${Math.min(i % 3 + 1, 4)} animate-fadein-up`}>
-              {/* Top accent strip */}
               <div className="h-1.5 w-full" style={{ background:`linear-gradient(90deg,${cert.accent}88,${cert.accent}22)` }} />
-
               <div className="p-8 flex flex-col flex-1">
-                {/* Icon + badge */}
                 <div className="flex items-start justify-between mb-5">
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl sheen-parent"
                     style={{ background: cert.bg, border:`1px solid ${cert.accent}30` }}>
                     {cert.icon}
                   </div>
-                  <span className="text-xs font-black px-3 py-1 rounded-full"
+                  <span className="text-xs font-black px-3 py-1 rounded-full font-mono-tech"
                     style={{ background:`${cert.accent}15`, color: cert.accent, border:`1px solid ${cert.accent}30` }}>
                     {cert.year}
                   </span>
                 </div>
-
-                {/* Name */}
                 <h3 className="text-base font-black mb-1 leading-snug" style={{ color: PASTEL.text }}>{cert.name}</h3>
-                <p className="text-xs font-bold mb-6" style={{ color: cert.accent }}>{cert.platform}</p>
-
-                {/* Verify button */}
+                <p className="text-xs font-bold mb-6 font-mono-tech" style={{ color: cert.accent }}>{cert.platform}</p>
                 <div className="mt-auto">
                   <a href={cert.link} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white transition-all hover:scale-105 hover:-translate-y-0.5 active:scale-95"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white transition-all hover:scale-105 hover:-translate-y-0.5 active:scale-95 font-mono-tech"
                     style={{ background:`linear-gradient(135deg,${cert.accent},${cert.accent}aa)`, boxShadow:`0 4px 16px ${cert.accent}44` }}>
                     View Certificate ↗
                   </a>
@@ -633,13 +582,11 @@ export default function Portfolio() {
       {/* ── CONTACT CTA ── */}
       <section id="contact" className="relative z-10 py-28 px-6">
         <TiltCard className="max-w-4xl mx-auto pastel-card rounded-[3rem] p-14 md:p-20 text-center relative overflow-hidden"
-          style={{ boxShadow:'0 30px 80px rgba(192,132,252,0.2)' }}>
-          {/* bg accents */}
-          <div className="absolute top-0 left-0 w-72 h-72 rounded-full blur-3xl opacity-30 -mt-20 -ml-20 animate-float3d"
-            style={{ background:'radial-gradient(circle,#e9d5ff,transparent)' }} />
-          <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full blur-3xl opacity-30 -mb-20 -mr-20 animate-float3d-delay"
-            style={{ background:'radial-gradient(circle,#bae6fd,transparent)' }} />
-
+          style={{ boxShadow:'0 30px 80px rgba(0,240,255,0.1)' }}>
+          <div className="absolute top-0 left-0 w-72 h-72 rounded-full blur-3xl opacity-20 -mt-20 -ml-20 animate-float3d"
+            style={{ background:'radial-gradient(circle,#bd00ff44,transparent)' }} />
+          <div className="absolute bottom-0 right-0 w-72 h-72 rounded-full blur-3xl opacity-20 -mb-20 -mr-20 animate-float3d-delay"
+            style={{ background:'radial-gradient(circle,#00f0ff33,transparent)' }} />
           <div className="relative z-10">
             <span className="pastel-badge mb-5"><Mail size={14} /> Get in touch</span>
             <h2 className="text-4xl md:text-5xl font-black my-5" style={{ color: PASTEL.text }}>
@@ -650,12 +597,12 @@ export default function Portfolio() {
             </p>
             <div className="flex flex-wrap justify-center gap-5">
               <a href="mailto:shirmeenaamir112@gmail.com"
-                className="sheen-parent px-10 py-4 rounded-2xl font-black text-lg text-white transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
-                style={{ background:'linear-gradient(135deg,#c084fc,#7dd3fc)', boxShadow:'0 8px 30px rgba(192,132,252,0.45)' }}>
+                className="sheen-parent px-10 py-4 rounded-2xl font-black text-lg text-white transition-all hover:scale-105 hover:-translate-y-1 active:scale-95 cyber-btn font-mono-tech"
+                style={{ background:'linear-gradient(135deg,#bd00ff,#00f0ff)', boxShadow:'0 8px 30px rgba(0,240,255,0.3)' }}>
                 Get In Touch <Mail size={20} className="ml-2 inline" />
               </a>
               <a href="https://github.com/Shirmeen" target="_blank" rel="noopener noreferrer"
-                className="sheen-parent pastel-card px-10 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:-translate-y-1 active:scale-95"
+                className="sheen-parent pastel-card px-10 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 hover:-translate-y-1 active:scale-95 font-mono-tech"
                 style={{ color: PASTEL.purpleDark }}>
                 View GitHub <Github size={20} className="ml-2 inline" />
               </a>
@@ -665,12 +612,12 @@ export default function Portfolio() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="relative z-10 py-12 text-center" style={{ borderTop:`1px solid rgba(200,170,255,0.3)` }}>
+      <footer className="relative z-10 py-12 text-center" style={{ borderTop:'1px solid rgba(189,0,255,0.2)' }}>
         <div className="text-2xl font-black text-gradient-pastel mb-3">SA</div>
-        <p className="text-xs font-bold uppercase tracking-[0.18em] mb-1" style={{ color: PASTEL.textSoft }}>
+        <p className="text-xs font-bold uppercase tracking-[0.18em] mb-1 font-mono-tech" style={{ color: PASTEL.textSoft }}>
           Data Scientist • ML Engineer • AI Enthusiast
         </p>
-        <p className="text-xs" style={{ color:'#bba8d4' }}>
+        <p className="text-xs font-mono-tech" style={{ color:'#6b5f8a' }}>
           © {new Date().getFullYear()} Shirmeen Aamir — Built with <Heart size={14} className="inline text-red-500 mx-1" fill="currentColor" /> & React
         </p>
       </footer>

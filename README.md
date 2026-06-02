@@ -84,8 +84,8 @@ class ShirmeenAamir:
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Shirmeen&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&title_color=00F0FF&icon_color=ff007f&text_color=ede9f6)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Shirmeen&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&title_color=00F0FF&text_color=ede9f6)
+![Profile Summary Card](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Shirmeen&theme=tokyonight)
+![Commit Language Card](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Shirmeen&theme=tokyonight)
 
 ![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&theme=tokyonight&hide_border=true&ring=00F0FF&fire=ff007f&currStreakLabel=00F0FF)
 

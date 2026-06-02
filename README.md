@@ -3,7 +3,7 @@
 # ✨ Shirmeen Aamir ✨
 ### **Generative AI Engineer • Deep Learning Practitioner • Systems Builder**
 
-<a href="https://shirmeen.github.io/Shirmeen/"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=600&lines=Hi+there%2C+I'm+Shirmeen!+%F0%9F%91%8B;Generative+AI+Engineer;Deep+Learning+and+Computer+Vision;Always+learning%2C+always+building!+%F0%9F%9A%80" alt="Typing SVG" /></a>
+<a href="https://shirmeen.github.io/Shirmeen/"><img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=25&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=600&lines=Hi+there%2C+I'm+Shirmeen!+👋;Generative+AI+Engineer;Deep+Learning+%26+Computer+Vision;Always+learning%2C+always+building!🚀" alt="Typing SVG" /></a>
 
 <br/>
 

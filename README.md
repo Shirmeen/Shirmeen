@@ -31,6 +31,12 @@ class ShirmeenAamir:
 
 ---
 
+### 💼 Work Experience
+- **Activity Coordinator** — *Crescent Model Higher Secondary School Girls Campus* (Feb 2026 – Present)
+- **Associate Generative AI Engineer** — *BIG IMMERSIVE* (Aug 2025 – Jan 2026)
+
+---
+
 ### 🛠️ Core Tech Stack
 
 <div align="center">
@@ -63,15 +69,26 @@ class ShirmeenAamir:
 
 ---
 
+### 🎖️ Certifications & Credentials
+
+- 🤖 **Multi AI Agent Systems** — *DeepLearning.AI* (2024) \| [View Certificate ↗](https://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89)
+- 🎓 **10Pearls University** — *10Pearls* (2024) \| [View Certificate ↗](https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403)
+- 🧠 **Intro to Deep Learning** — *Kaggle* (2024) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning)
+- 🗄️ **Intro to SQL** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql)
+- 📊 **Data Visualization** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization)
+- 🐍 **Intro to Programming** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming)
+
+---
+
 ### 📈 GitHub Activities & Stats
 
 <div align="center">
-  <img height="180px" src="https://github-readme-stats.vercel.app/api?username=Shirmeen&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&title_color=00F0FF&icon_color=ff007f&text_color=ede9f6" />
-  <img height="180px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shirmeen&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&title_color=00F0FF&text_color=ede9f6" />
-</div>
 
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&theme=tokyonight&hide_border=true&ring=00F0FF&fire=ff007f&currStreakLabel=00F0FF" />
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Shirmeen&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&title_color=00F0FF&icon_color=ff007f&text_color=ede9f6)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=Shirmeen&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&title_color=00F0FF&text_color=ede9f6)
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&theme=tokyonight&hide_border=true&ring=00F0FF&fire=ff007f&currStreakLabel=00F0FF)
+
 </div>
 
 <br/>

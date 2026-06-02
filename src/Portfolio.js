@@ -151,6 +151,8 @@ const PROJECTS = [
   { title:'AI Workshop', desc:'Interactive AI toolkit website exploring modern AI tools and real-world workflows.', icon:<Bot size={40} />, bg:'#1a0f00', accent:'#f59e0b', tags:['HTML','CSS','JavaScript'], link:'https://github.com/Shirmeen/ai-workshop', live:'https://shirmeen.github.io/ai-workshop/' },
   { title:'NOTETAKE5R', desc:'SvelteKit-powered note-taking app with Google Calendar OAuth integration and real-time sync.', icon:<Keyboard size={40} />, bg:'#001a14', accent:'#0d9488', tags:['SvelteKit','Google OAuth','Full Stack'], link:'https://github.com/Shirmeen/NOTETAKE5R-' },
   { title:'React Vite App', desc:'Modern React + TypeScript + Vite application with HMR and optimized build pipeline.', icon:<Rocket size={40} />, bg:'#060024', accent:'#4f46e5', tags:['React','TypeScript','Vite'], link:'https://github.com/Shirmeen/app', live:'https://shirmeen.github.io/app/' },
+  { title:'CEO Dashboard', desc:'Executive dashboard interface for enterprise metrics tracking.', icon:<BarChart size={40} />, bg:'#0e0b1f', accent:'#bd00ff', tags:['HTML','CSS','Web Application'], link:'https://github.com/Shirmeen/ceo-appp' },
+  { title:'Academic Department', desc:'Layout and structure platform for academic departments.', icon:<GraduationCap size={40} />, bg:'#061324', accent:'#00abff', tags:['HTML','CSS','Web'], link:'https://github.com/Shirmeen/department-of-acadamics' },
 ];
 
 const CERTS = [

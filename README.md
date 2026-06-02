@@ -1,70 +1,87 @@
-# Getting Started with Create React App
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ✨ Shirmeen Aamir ✨
+### **Generative AI Engineer • Deep Learning Practitioner • Systems Builder**
 
-## Available Scripts
+<a href="https://shirmeen.github.io/Shirmeen/"><img src="https://readme-typing-svg.demolab.com?font=Space+Grotesk&weight=700&size=25&duration=3000&pause=1000&color=00F0FF&center=true&vCenter=true&width=600&lines=Hi+there%2C+I'm+Shirmeen!+👋;Generative+AI+Engineer;Deep+Learning+%26+Computer+Vision;Always+learning%2C+always+building!🚀" alt="Typing SVG" /></a>
 
-In the project directory, you can run:
+<br/>
 
-### `npm start`
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/shirmeen-amir-35ab81264)
+[![Gmail](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:shirmeenaamir112@gmail.com)
+[![Portfolio](https://img.shields.io/badge/Portfolio-bd00ff?style=for-the-badge&logo=react&logoColor=white)](https://shirmeen.github.io/Shirmeen/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+</div>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+### 🚀 About Me
+I am a Data Scientist and AI Engineer specializing in **Generative AI (GANs, VAEs, Stable Diffusion)**, **Deep Learning**, and **Computer Vision**. I design intelligent systems using state-of-the-art architectures, uncertainty-quantified Graph Neural Networks (GNNs), and automated agentic workflows.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```python
+class ShirmeenAamir:
+    def __init__(self):
+        self.role       = "Associate Generative AI Engineer"
+        self.location   = "Lahore, Pakistan"
+        self.languages  = ["Python", "C/C++", "SQL", "JavaScript", "Assembly x86"]
+        self.domains    = ["Generative AI", "Bayesian GNNs", "Computer Vision", "NLP"]
+        self.currently  = "Coordinating tech & creative systems, scaling AI workflows"
+        self.fun_fact   = "I've built a full doubly linked notepad & classic games in assembly 🎮"
+```
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🛠️ Core Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div align="center">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Area | Technologies |
+| :--- | :--- |
+| **Generative AI & LLMs** | `LangChain` `GANs` `VAEs` `Stable Diffusion` `CLIP` `Prompt Engineering` |
+| **Deep Learning & CV** | `PyTorch` `TensorFlow` `Scikit-Learn` `OpenCV` `Bayesian GNNs` `CNNs` |
+| **Databases & Frameworks** | `PostgreSQL` `SQL Server` `Docker` `Django` `React` `SvelteKit` |
+| **Tools & Platforms** | `Git` `Tableau` `Power BI` `Azure DevOps` `Jupyter` `Linux` |
 
-### `npm run eject`
+</div>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 📂 Featured Projects
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<div align="center">
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+| Project | Description | Tech Stack |
+| :--- | :--- | :--- |
+| **[🧠 ADetectPro (FYP)](https://github.com/Shirmeen/fyp)** | Early Alzheimer's detection using Bayesian GNNs with uncertainty quantification. | `Python` `GNN` `Deep Learning` |
+| **[🎨 Generative AI Models](https://github.com/Shirmeen/Generative-Adversarial-Networks-GANs-Autoencoders-AE-Variational-Autoencoders-VAEs-)** | GANs, Autoencoders & VAEs for anomaly detection and generative modeling. | `Python` `GANs` `VAEs` |
+| **[👾 Pacman Clone](https://github.com/Shirmeen/Pacman-Game-Implementation-in-C-)** | Classic Pacman replica written from scratch using OOP and C++ graphics. | `C++` `OOP` `Graphics` |
+| **[👁️ EmoNet](https://github.com/Shirmeen/EmoNet)** | Emotion classification using CNNs, SVMs, and Random Forest. | `CNN` `SVM` `Python` |
+| **[🗒️ NOTETAKE5R](https://github.com/Shirmeen/NOTETAKE5R-)** | Note-taking platform with Google Calendar OAuth sync and real-time backend. | `SvelteKit` `OAuth` `JS` |
+| **[🕹️ x86 Tic-Tac-Toe](https://github.com/Shirmeen/Tic-Tac-Toe-in-Assembly-Language)** | Classic two-player game implemented natively in x86 Assembly. | `Assembly` `Low-level` |
 
-## Learn More
+</div>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 📈 GitHub Activities & Stats
 
-### Code Splitting
+<div align="center">
+  <img height="180px" src="https://github-readme-stats.vercel.app/api?username=Shirmeen&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&title_color=00F0FF&icon_color=ff007f&text_color=ede9f6" />
+  <img height="180px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Shirmeen&layout=compact&theme=tokyonight&hide_border=true&langs_count=6&title_color=00F0FF&text_color=ede9f6" />
+</div>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=Shirmeen&theme=tokyonight&hide_border=true&ring=00F0FF&fire=ff007f&currStreakLabel=00F0FF" />
+</div>
 
-### Analyzing the Bundle Size
+<br/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<div align="center">
 
-### Making a Progressive Web App
+🚀 *Let's collaborate and build something remarkable! Feel free to connect.*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```javascript
+console.log("Keep inventing! 💡");
+```
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</div>

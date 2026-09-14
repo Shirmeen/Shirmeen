@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/Shirmeen/static/css/main.bb84364c.css",
-    "main.js": "/Shirmeen/static/js/main.76b4017f.js",
-    "static/js/453.438d9e50.chunk.js": "/Shirmeen/static/js/453.438d9e50.chunk.js",
+    "main.css": "/Shirmeen/static/css/main.10940531.css",
+    "main.js": "/Shirmeen/static/js/main.df6769a7.js",
+    "static/js/206.e251589c.chunk.js": "/Shirmeen/static/js/206.e251589c.chunk.js",
     "static/media/image.png": "/Shirmeen/static/media/image.3a252c0ed06a74edba1b.png",
-    "index.html": "/Shirmeen/index.html",
-    "main.bb84364c.css.map": "/Shirmeen/static/css/main.bb84364c.css.map",
-    "main.76b4017f.js.map": "/Shirmeen/static/js/main.76b4017f.js.map",
-    "453.438d9e50.chunk.js.map": "/Shirmeen/static/js/453.438d9e50.chunk.js.map"
+    "index.html": "/Shirmeen/index.html"
   },
   "entrypoints": [
-    "static/css/main.bb84364c.css",
-    "static/js/main.76b4017f.js"
+    "static/css/main.10940531.css",
+    "static/js/main.df6769a7.js"
   ]
 }

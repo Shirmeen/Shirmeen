@@ -294,7 +294,7 @@ export default function Portfolio() {
             
             {/* Left Column: Titles */}
             <div className="relative pt-12 md:pt-24 z-10">
-              <div className="mb-12 font-mono text-sm font-bold leading-tight">
+              <div className="mb-8 font-mono text-lg sm:text-xl md:text-2xl font-bold leading-tight tracking-wider text-[#111827]">
                 AI ENGINEER / <br/> DATA SCIENTIST
               </div>
               

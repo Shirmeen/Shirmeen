@@ -8,6 +8,7 @@ import {
   Globe, Menu, X, Check, Copy, Search, ChevronDown, RefreshCw 
 } from 'lucide-react';
 import InteractiveCanvas from './InteractiveCanvas';
+import HowItWorks from './components/ui/how-it-works';
 
 // ─── HIGH-CONTRAST CYBER COLOR PALETTE ────────────────────────────────────────
 const PASTEL = {
@@ -941,33 +942,14 @@ export default function Portfolio() {
             <p className="mt-3 font-medium text-sm sm:text-base" style={{ color: PASTEL.textSoft }}>Verified credentials from leading AI and tech institutions</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {CERTS.map((cert) => (
-              <TiltCard key={cert.name} className="pastel-card rounded-[2rem] overflow-hidden flex flex-col group reveal-target">
-                <div className="h-1.5 w-full" style={{ background:`linear-gradient(90deg,${cert.accent}88,${cert.accent}22)` }} />
-                <div className="p-8 flex flex-col flex-1">
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl sheen-parent"
-                      style={{ background: cert.bg, border:`1px solid ${cert.accent}30` }}>
-                      {cert.icon}
-                    </div>
-                    <span className="text-xs font-black px-3 py-1 rounded-full font-mono-tech"
-                      style={{ background:`${cert.accent}15`, color: cert.accent, border:`1px solid ${cert.accent}30` }}>
-                      {cert.year}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-black mb-1 leading-snug" style={{ color: PASTEL.text }}>{cert.name}</h3>
-                  <p className="text-xs font-bold mb-6 font-mono-tech" style={{ color: cert.accent }}>{cert.platform}</p>
-                  <div className="mt-auto">
-                    <a href={cert.link} target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black text-white transition-all hover:scale-105 hover:-translate-y-0.5 active:scale-95 font-mono-tech"
-                      style={{ background:`linear-gradient(135deg,${cert.accent},${cert.accent}aa)`, boxShadow:`0 4px 16px ${cert.accent}44` }}>
-                      View Certificate ↗
-                    </a>
-                  </div>
-                </div>
-              </TiltCard>
-            ))}
+          <div className="reveal-section">
+            <HowItWorks features={CERTS.map(cert => ({
+              title: cert.name,
+              description: cert.platform + ' • ' + cert.year,
+              icon: cert.icon,
+              link: cert.link,
+              colors: { bg: cert.bg, text: cert.accent, border: `${cert.accent}40` }
+            }))} />
           </div>
         </section>
 

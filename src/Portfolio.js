@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import profileImage from './image.png';
+import profileImage from './profile.png';
 import { 
   Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, 
   LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, 

@@ -224,9 +224,9 @@ const CERTS = [
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const DrawnArrow = () => (
-  <svg width="120" height="120" viewBox="0 0 100 100" className="drawn-arrow w-24 h-24 md:w-32 md:h-32" style={{ zIndex: 10 }}>
-    <path d="M10,15 Q45,70 85,45" />
-    <path d="M70,32 L85,45 L72,58" />
+  <svg width="140" height="90" viewBox="0 0 140 90" className="drawn-arrow w-28 h-20 md:w-36 md:h-24 pointer-events-none" style={{ zIndex: 10 }}>
+    <path d="M10,8 Q55,75 125,40" />
+    <path d="M108,27 L125,40 L112,55" />
   </svg>
 );
 
@@ -302,8 +302,8 @@ export default function Portfolio() {
                 <div className="scrapbook-box tilt-left text-3xl md:text-5xl lg:text-6xl text-[#111827]">
                   <Smiley /> SHIRMEEN
                 </div>
-                {/* Arrow pointing to image */}
-                <div className="absolute -bottom-16 -right-12 rotate-12 hidden md:block">
+                {/* Arrow pointing to image & surname */}
+                <div className="absolute top-[75%] -right-16 sm:-right-24 md:-right-32 rotate-6 hidden md:block pointer-events-none">
                   <DrawnArrow />
                 </div>
               </div>

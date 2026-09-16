@@ -7,9 +7,7 @@ import {
   Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, 
   Globe, Menu, X, Check, Copy, Search, ChevronDown, RefreshCw 
 } from 'lucide-react';
-import InteractiveCanvas from './InteractiveCanvas';
 import CertificatesDemo from './components/CertificatesDemo';
-import { GridPulse } from './components/ui/grid-pulse';
 
 // ─── HIGH-CONTRAST CYBER COLOR PALETTE ────────────────────────────────────────
 const PASTEL = {

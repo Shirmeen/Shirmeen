@@ -224,9 +224,9 @@ const CERTS = [
 
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const DrawnArrow = () => (
-  <svg width="60" height="60" viewBox="0 0 100 100" className="drawn-arrow absolute" style={{ zIndex: 10 }}>
-    <path d="M10,10 Q40,60 80,40" />
-    <path d="M70,30 L80,40 L70,50" />
+  <svg width="120" height="120" viewBox="0 0 100 100" className="drawn-arrow w-24 h-24 md:w-32 md:h-32" style={{ zIndex: 10 }}>
+    <path d="M10,15 Q45,70 85,45" />
+    <path d="M70,32 L85,45 L72,58" />
   </svg>
 );
 

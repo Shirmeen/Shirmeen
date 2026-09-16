@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Shirmeen/static/css/main.edd405e1.css",
-    "main.js": "/Shirmeen/static/js/main.fdeacbcb.js",
+    "main.css": "/Shirmeen/static/css/main.9cf0e306.css",
+    "main.js": "/Shirmeen/static/js/main.2a7ba236.js",
     "static/js/206.e251589c.chunk.js": "/Shirmeen/static/js/206.e251589c.chunk.js",
     "static/media/profile.png": "/Shirmeen/static/media/profile.e2ad958c02a680eb36fd.png",
     "index.html": "/Shirmeen/index.html"
   },
   "entrypoints": [
-    "static/css/main.edd405e1.css",
-    "static/js/main.fdeacbcb.js"
+    "static/css/main.9cf0e306.css",
+    "static/js/main.2a7ba236.js"
   ]
 }

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import InteractiveCanvas from './InteractiveCanvas';
 import HowItWorks from './components/ui/how-it-works';
+import { GridPulse } from './components/ui/grid-pulse';
 
 // ─── HIGH-CONTRAST CYBER COLOR PALETTE ────────────────────────────────────────
 const PASTEL = {
@@ -611,8 +612,9 @@ export default function Portfolio() {
       <main className="relative z-10 w-full">
 
         {/* ── SECTION 0: HERO / ABOUT ── */}
-        <section id="about" className="min-h-screen flex flex-col justify-center pt-28 pb-0 px-6 max-w-7xl mx-auto">
-          <div className="flex-1 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-16 w-full">
+        <section id="about" className="relative min-h-screen flex flex-col justify-center pt-28 pb-0 px-6 max-w-none w-full bg-slate-50 text-slate-900 rounded-b-[4rem] shadow-2xl mb-12">
+          <GridPulse />
+          <div className="relative z-10 flex-1 flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-16 w-full max-w-7xl mx-auto pb-12">
 
             {/* Profile with HUD rings — profile-burst animation on load */}
             <div className="relative flex-shrink-0 p-6 reveal-left" style={{ perspective:'900px' }}>
@@ -646,7 +648,7 @@ export default function Portfolio() {
 
             {/* Intro Text */}
             <div className="flex-1 text-center md:text-left reveal-right">
-              <p className="font-bold tracking-widest uppercase text-sm mb-3 flex items-center justify-center md:justify-start gap-2" style={{ color: HERO_DATA.theme.textColor }}>
+              <p className="font-bold tracking-widest uppercase text-sm mb-3 flex items-center justify-center md:justify-start gap-2" style={{ color: '#0f172a' }}>
                 <span style={{ animation:'blink 1s steps(1) infinite', display:'inline-block' }}><Hand size={16} /></span> {HERO_DATA.hello}
               </p>
 
@@ -654,12 +656,12 @@ export default function Portfolio() {
               <AnimatedName firstName="Shirmeen" lastName="Aamir" />
 
               {/* Typewriter */}
-              <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 h-10 flex items-center justify-center md:justify-start gap-1 font-mono-tech" style={{ color: HERO_DATA.theme.accent }}>
+              <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 h-10 flex items-center justify-center md:justify-start gap-1 font-mono-tech" style={{ color: '#4f46e5' }}>
                 <span>{typed}</span>
-                <span className="cursor inline-block w-0.5 h-7 rounded-full" style={{ background: HERO_DATA.theme.accent }}>|</span>
+                <span className="cursor inline-block w-0.5 h-7 rounded-full" style={{ background: '#4f46e5' }}>|</span>
               </div>
 
-              <p className="text-base sm:text-lg leading-relaxed max-w-2xl mb-8" style={{ color: PASTEL.textSoft }}>
+              <p className="text-base sm:text-lg leading-relaxed max-w-2xl mb-8" style={{ color: '#334155' }}>
                 {HERO_DATA.description}
               </p>
 
@@ -669,7 +671,7 @@ export default function Portfolio() {
                   [(<MapPin size={16} key="pin" />), 'Lahore, Pakistan'],
                   [(<Phone size={16} key="phone" />), '+92 316 6370030']
                 ].map(([icon, text]) => (
-                  <div key={text} className="pastel-card flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold font-mono-tech" style={{ color: PASTEL.textSoft }}>
+                  <div key={text} className="bg-white/50 border border-slate-200 shadow-sm flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold font-mono-tech" style={{ color: '#475569' }}>
                     {icon} <span>{text}</span>
                   </div>
                 ))}

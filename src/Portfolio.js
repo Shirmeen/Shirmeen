@@ -67,10 +67,22 @@ const HERO_DATA = {
   description: (
     <>
       AI Engineer with a Data Science background specializing in{' '}
-      <span className="font-bold px-2.5 py-1.5 rounded text-cyan-800 bg-cyan-100 border border-cyan-800/40 font-mono-tech shadow-[0_0_15px_rgba(6,182,212,0.15)]">Generative AI</span>,{' '}
-      <span className="font-bold px-2.5 py-1.5 rounded text-purple-800 bg-purple-100 border border-purple-800/40 font-mono-tech shadow-[0_0_15px_rgba(168,85,247,0.15)]">Deep Learning</span>,{' '}
-      <span className="font-bold px-2.5 py-1.5 rounded text-pink-800 bg-pink-100 border border-pink-800/40 font-mono-tech shadow-[0_0_15px_rgba(236,72,153,0.15)]">Computer Vision</span>, and{' '}
-      <span className="font-bold px-2.5 py-1.5 rounded text-emerald-800 bg-emerald-100 border border-emerald-800/40 font-mono-tech shadow-[0_0_15px_rgba(16,185,129,0.15)]">Bayesian Modeling</span>.
+      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#cffafe] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
+        Generative AI
+      </span>
+      ,{' '}
+      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#f3e8ff] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
+        Deep Learning
+      </span>
+      ,{' '}
+      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#fce7f3] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
+        Computer Vision
+      </span>
+      , and{' '}
+      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#dcfce7] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
+        Bayesian Modeling
+      </span>
+      .
     </>
   ),
   badges: [
@@ -233,7 +245,7 @@ const Smiley = () => (
 export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
-  const SECTIONS_LIST = ['about', 'work', 'services', 'contact'];
+  const SECTIONS_LIST = ['about', 'introduction', 'services', 'experience', 'projects', 'certifications', 'contact'];
 
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
@@ -317,8 +329,8 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* ── MY WORK SECTION ── */}
-        <section id="work" className="py-20 border-t-2 border-[#111827]">
+        {/* ── INTRODUCTION SECTION ── */}
+        <section id="introduction" className="py-20 border-t-2 border-[#111827]">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             
             {/* Image (using profile as placeholder for keyboard) */}
@@ -330,38 +342,54 @@ export default function Portfolio() {
             </div>
 
             {/* Content */}
-            <div className="md:col-span-7 pl-0 md:pl-8">
-              <div className="mb-10">
-                <div className="scrapbook-box tilt-left text-2xl md:text-4xl text-[#111827]">
-                  MY WORK <Smiley />
+            <div className="md:col-span-7 pl-0 md:pl-8 space-y-6">
+              <div>
+                <div className="scrapbook-box tilt-left text-2xl md:text-4xl text-[#111827] mb-6">
+                  INTRODUCTION
                 </div>
               </div>
               
-              <p className="text-lg md:text-xl font-medium mb-12 max-w-xl leading-relaxed">
+              <p className="text-lg md:text-xl font-medium max-w-xl leading-relaxed text-[#111827]">
                 {HERO_DATA.description}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                {/* Highlighted Project 1 */}
-                <div>
-                  <div className="flex items-start gap-3 mb-2">
-                    <span className="asterisk-divider mt-1">*</span>
-                    <h3 className="font-bold text-sm tracking-widest uppercase font-mono">{PROJECTS[0]?.title || 'FEATURED PROJECT'}</h3>
+              <p className="text-sm md:text-base text-gray-800 leading-relaxed font-sans">
+                Driven by curiosity at the intersection of machine intelligence and practical software engineering. 
+                I specialize in architecting autonomous multi-agent systems, training probabilistic deep learning models with uncertainty quantification, and building end-to-end applications that bridge complex AI research with reliable production environments.
+              </p>
+
+              {/* Focus Pillars */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="border-2 border-[#111827] bg-[#ffffff] p-4 shadow-[3px_3px_0px_#111827]">
+                  <div className="font-mono font-bold text-xs uppercase tracking-wider mb-1">
+                    Production GenAI
                   </div>
-                  <p className="text-sm pl-8 text-gray-700">
-                    {PROJECTS[0]?.desc}
+                  <p className="text-xs text-gray-700 leading-relaxed">
+                    LangChain architectures, agentic pipelines, structured prompt engineering, and LLM integrations.
                   </p>
                 </div>
-                {/* Highlighted Project 2 */}
-                <div>
-                  <div className="flex items-start gap-3 mb-2">
-                    <span className="asterisk-divider mt-1">*</span>
-                    <h3 className="font-bold text-sm tracking-widest uppercase font-mono">{PROJECTS[1]?.title || 'LATEST PROJECT'}</h3>
+
+                <div className="border-2 border-[#111827] bg-[#ffffff] p-4 shadow-[3px_3px_0px_#111827]">
+                  <div className="font-mono font-bold text-xs uppercase tracking-wider mb-1">
+                    Deep Learning & Research
                   </div>
-                  <p className="text-sm pl-8 text-gray-700">
-                    {PROJECTS[1]?.desc}
+                  <p className="text-xs text-gray-700 leading-relaxed">
+                    Bayesian Graph Neural Networks, GANs, VAEs, and computer vision with uncertainty estimation.
                   </p>
                 </div>
+              </div>
+
+              {/* Quick Info Badges */}
+              <div className="flex flex-wrap gap-2 pt-2">
+                <span className="text-xs font-mono font-bold border-2 border-[#111827] bg-[#e8e6e1] px-3 py-1 shadow-[2px_2px_0px_#111827]">
+                  Lahore, Pakistan
+                </span>
+                <span className="text-xs font-mono font-bold border-2 border-[#111827] bg-[#e8e6e1] px-3 py-1 shadow-[2px_2px_0px_#111827]">
+                  18+ Projects Completed
+                </span>
+                <span className="text-xs font-mono font-bold border-2 border-[#111827] bg-[#e8e6e1] px-3 py-1 shadow-[2px_2px_0px_#111827]">
+                  Open for Opportunities
+                </span>
               </div>
             </div>
 
@@ -431,9 +459,6 @@ export default function Portfolio() {
           </div>
         </section>
 
-      </main>
-      
-
         {/* ── EXPERIENCE SECTION ── */}
         <section id="experience" className="py-20 border-t-2 border-[#111827]">
           <div className="mb-16 text-center">
@@ -443,7 +468,7 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {EXPERIENCE.map((exp, idx) => (
-              <div key={idx} className="border-2 border-[#111827] bg-[#ffffff] p-8 relative">
+              <div key={idx} className="border-2 border-[#111827] bg-[#ffffff] p-8 relative shadow-[4px_4px_0px_rgba(17,24,39,0.1)]">
                 <div className="absolute top-0 right-0 border-b-2 border-l-2 border-[#111827] px-3 py-1 font-mono text-xs font-bold bg-[#e8e6e1]">
                   {exp.duration}
                 </div>
@@ -463,22 +488,28 @@ export default function Portfolio() {
           </div>
         </section>
 
-        {/* ── MORE PROJECTS SECTION ── */}
+        {/* ── PROJECTS SECTION ── */}
         <section id="projects" className="py-20 border-t-2 border-[#111827]">
           <div className="mb-12">
-            <h2 className="text-2xl font-bold font-mono tracking-widest uppercase mb-2">More Projects <Smiley /></h2>
+            <h2 className="text-2xl font-bold font-mono tracking-widest uppercase mb-2">Projects <Smiley /></h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.slice(2).map((proj, idx) => (
-              <a key={idx} href={proj.link} target="_blank" rel="noreferrer" className="border-2 border-[#111827] p-5 block hover:bg-[#ffffff] transition-colors">
+            {PROJECTS.map((proj, idx) => (
+              <a 
+                key={idx} 
+                href={proj.link} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="border-2 border-[#111827] bg-[#ffffff] p-6 block hover:shadow-[6px_6px_0px_#111827] hover:-translate-y-0.5 transition-all shadow-[2px_2px_0px_rgba(17,24,39,0.15)]"
+              >
                 <div className="flex justify-between items-start mb-4">
                   <span className="text-[#111827]">{proj.icon}</span>
                 </div>
                 <h3 className="font-bold font-mono text-lg mb-2">{proj.title}</h3>
-                <p className="text-sm text-gray-700 mb-4">{proj.desc}</p>
+                <p className="text-sm text-gray-700 mb-4 leading-relaxed">{proj.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {proj.tags.map(tag => (
-                    <span key={tag} className="text-xs font-mono border border-[#111827] px-2 py-1">{tag}</span>
+                    <span key={tag} className="text-xs font-mono border border-[#111827] px-2 py-1 bg-[#e8e6e1]/60">{tag}</span>
                   ))}
                 </div>
               </a>
@@ -493,6 +524,8 @@ export default function Portfolio() {
           </div>
           <CertificatesDemo />
         </section>
+
+      </main>
       {/* Contact Section */}
       <section id="contact" className="py-20 border-t-2 border-[#111827] bg-[#e8e6e1] overflow-hidden">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between min-h-[400px] px-8 gap-12">

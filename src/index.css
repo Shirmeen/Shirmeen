@@ -50,6 +50,41 @@ body {
   filter: grayscale(100%) contrast(1.1);
 }
 
+/* Keyframe animations for Hero section */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes float-counter {
+  0%, 100% { transform: translateY(0px) rotate(4deg); }
+  50% { transform: translateY(-6px) rotate(5deg); }
+}
+
+@keyframes arrow-draw {
+  0% { stroke-dashoffset: 200; opacity: 0.6; }
+  50% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+.animate-float-hero {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+.animate-float-surname {
+  animation: float-counter 4.5s ease-in-out infinite;
+}
+
+/* Accessibility: Respect user reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-hero,
+  .animate-float-surname,
+  .drawn-arrow path {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* Arrow svg drawn with stroke */
 .drawn-arrow {
   stroke: #111827;
@@ -57,6 +92,13 @@ body {
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(2px 2px 0px rgba(17, 24, 39, 0.15));
+}
+
+.drawn-arrow path {
+  stroke-dasharray: 250;
+  stroke-dashoffset: 0;
+  animation: arrow-draw 3.5s ease-in-out infinite alternate;
 }
 
 .asterisk-divider {

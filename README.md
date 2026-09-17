@@ -47,6 +47,14 @@ class ShirmeenAamir:
 
 ---
 
+### 🎓 Education
+
+- **Bachelor of Science in Data Science** — *FAST-NUCES, Lahore* `(2021 – 2025)`
+- **Intermediate in Computer Science (ICS - Physics)** — *Lahore College for Women University (LCWU)* `(2019 – 2021)`
+- **Matriculation** — *Crescent Model Higher Secondary School*
+
+---
+
 ### 🛠️ Technical Skills
 
 <div align="center">
@@ -94,6 +102,28 @@ class ShirmeenAamir:
 - **Intro to SQL** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql)
 - **Data Visualization** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization)
 - **Intro to Programming** — *Kaggle* (2023) \| [View Certificate ↗](https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming)
+
+---
+
+### 🚀 Run & Deploy
+
+#### 1. Install Dependencies
+```bash
+npm install
+```
+*Installs required packages before running or building the project.*
+
+#### 2. Run Locally
+```bash
+npm start
+```
+*Starts the local development server at `http://localhost:3000`.*
+
+#### 3. Deploy to GitHub Pages
+```bash
+npm run deploy
+```
+*Builds the production bundle and publishes live to [shirmeen.github.io/Shirmeen](https://shirmeen.github.io/Shirmeen/)*.
 
 ---
 

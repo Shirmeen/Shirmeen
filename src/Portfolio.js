@@ -8,6 +8,7 @@ import {
   Globe, Menu, X, Check, Copy, Search, ChevronDown, RefreshCw 
 } from 'lucide-react';
 import CertificatesDemo from './components/CertificatesDemo';
+import Project3DShowcase from './components/Project3DShowcase';
 
 // ─── HIGH-CONTRAST CYBER COLOR PALETTE ────────────────────────────────────────
 const PASTEL = {
@@ -63,25 +64,29 @@ const HERO_DATA = {
   hello: "Hello, I'm",
   name: 'Shirmeen Aamir',
   description: (
-    <>
+    <span className="leading-relaxed">
       AI Engineer with a Data Science background specializing in{' '}
-      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#cffafe] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
-        Generative AI
+      <span className="inline-block whitespace-nowrap my-1">
+        <span className="font-bold px-2.5 py-0.5 mx-1 border-2 border-[#111827] text-[#111827] bg-[#cffafe] font-mono shadow-[2px_2px_0px_#111827] text-xs sm:text-sm md:text-base align-middle transition-all duration-200 ease-out transform hover:-translate-y-1 hover:-rotate-2 hover:scale-105 hover:shadow-[4px_4px_0px_#111827] cursor-pointer inline-block">
+          Generative AI
+        </span>,
+      </span>{' '}
+      <span className="inline-block whitespace-nowrap my-1">
+        <span className="font-bold px-2.5 py-0.5 mx-1 border-2 border-[#111827] text-[#111827] bg-[#f3e8ff] font-mono shadow-[2px_2px_0px_#111827] text-xs sm:text-sm md:text-base align-middle transition-all duration-200 ease-out transform hover:-translate-y-1 hover:rotate-2 hover:scale-105 hover:shadow-[4px_4px_0px_#111827] cursor-pointer inline-block">
+          Deep Learning
+        </span>,
+      </span>{' '}
+      <span className="inline-block whitespace-nowrap my-1">
+        <span className="font-bold px-2.5 py-0.5 mx-1 border-2 border-[#111827] text-[#111827] bg-[#fce7f3] font-mono shadow-[2px_2px_0px_#111827] text-xs sm:text-sm md:text-base align-middle transition-all duration-200 ease-out transform hover:-translate-y-1 hover:-rotate-1 hover:scale-105 hover:shadow-[4px_4px_0px_#111827] cursor-pointer inline-block">
+          Computer Vision
+        </span>,
+      </span> and{' '}
+      <span className="inline-block whitespace-nowrap my-1">
+        <span className="font-bold px-2.5 py-0.5 mx-1 border-2 border-[#111827] text-[#111827] bg-[#dcfce7] font-mono shadow-[2px_2px_0px_#111827] text-xs sm:text-sm md:text-base align-middle transition-all duration-200 ease-out transform hover:-translate-y-1 hover:rotate-1 hover:scale-105 hover:shadow-[4px_4px_0px_#111827] cursor-pointer inline-block">
+          Bayesian Modeling
+        </span>.
       </span>
-      ,{' '}
-      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#f3e8ff] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
-        Deep Learning
-      </span>
-      ,{' '}
-      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#fce7f3] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
-        Computer Vision
-      </span>
-      , and{' '}
-      <span className="font-bold px-2.5 py-1 border-2 border-[#111827] text-[#111827] bg-[#dcfce7] font-mono shadow-[2px_2px_0px_#111827] inline-block my-1">
-        Bayesian Modeling
-      </span>
-      .
-    </>
+    </span>
   ),
   badges: [
     { text: 'AI Engineer', icon: <Bot size={16} />, className: 'absolute top-8 -left-4 sm:-left-8 md:-left-12 pastel-card px-4 py-2 rounded-xl flex items-center gap-2 z-20 animate-bobble border-cyan-500/30', style: { boxShadow: '0 8px 24px rgba(0,240,255,0.2)' }, colorClass: 'text-cyan-800 font-mono-tech' },
@@ -315,16 +320,16 @@ export default function Portfolio() {
             
             {/* Left Column: Titles */}
             <div className="relative pt-12 md:pt-24 z-10">
-              <div className="mb-8 font-mono text-lg sm:text-xl md:text-2xl font-bold leading-tight tracking-wider text-[#111827]">
-                AI ENGINEER / <br/> DATA SCIENTIST
+              <div className="mb-8 font-mono text-lg sm:text-xl md:text-2xl font-bold leading-tight tracking-wider text-[#111827] flex items-center gap-2">
+                <span className="inline-block border-b-2 border-[#111827] pb-1">AI ENGINEER / DATA SCIENTIST</span>
               </div>
               
               <div className="relative inline-block mb-16 mt-4">
-                <div className="scrapbook-box tilt-left text-3xl md:text-5xl lg:text-6xl text-[#111827]">
+                <div className="scrapbook-box animate-float-hero text-3xl md:text-5xl lg:text-6xl text-[#111827] transition-all duration-300 hover:scale-105 hover:-rotate-6 hover:shadow-[8px_8px_0px_#111827] cursor-pointer">
                   <Smiley /> SHIRMEEN
                 </div>
                 {/* Arrow pointing to image & surname */}
-                <div className="absolute -bottom-24 -right-24 md:-right-36 hidden md:block pointer-events-none">
+                <div className="absolute -bottom-24 -right-24 md:-right-36 hidden md:block pointer-events-none transition-transform duration-300 hover:scale-110">
                   <DrawnArrow />
                 </div>
               </div>
@@ -332,14 +337,14 @@ export default function Portfolio() {
 
             {/* Right Column: Image & Surname */}
             <div className="relative flex justify-center md:justify-end pr-0 md:pr-12 pt-8">
-              <div className="relative w-[280px] h-[380px] md:w-[320px] md:h-[440px]">
+              <div className="relative w-[280px] h-[380px] md:w-[320px] md:h-[440px] group">
                 <img 
                   src={profileImage} 
                   alt="Shirmeen Aamir" 
-                  className="w-full h-full object-cover border-2 border-[#111827]"
+                  className="w-full h-full object-cover border-2 border-[#111827] shadow-[6px_6px_0px_#111827] group-hover:scale-[1.02] transition-all duration-500"
                 />
-                <div className="absolute -bottom-8 -left-12">
-                  <div className="scrapbook-box tilt-right text-3xl md:text-5xl lg:text-6xl text-[#111827] bg-[#e8e6e1]">
+                <div className="absolute -bottom-8 left-0 sm:-left-6 md:-left-12 z-20">
+                  <div className="scrapbook-box animate-float-surname text-3xl md:text-5xl lg:text-6xl text-[#111827] bg-[#e8e6e1] transition-all duration-300 hover:scale-105 hover:rotate-6 hover:shadow-[8px_8px_0px_#111827] cursor-pointer">
                     AAMIR
                   </div>
                 </div>
@@ -502,21 +507,36 @@ export default function Portfolio() {
         {/* ── EDUCATION SECTION ── */}
         <section id="education" className="py-20 border-t-2 border-[#111827]">
           <div className="mb-16 text-center">
-            <div className="border-2 border-[#111827] px-8 py-3 bg-[#e8e6e1] text-2xl md:text-4xl font-mono font-bold tracking-widest inline-block">
+            <div className="border-2 border-[#111827] px-8 py-3 bg-[#e8e6e1] text-2xl md:text-4xl font-mono font-bold tracking-widest inline-block shadow-[4px_4px_0px_#111827]">
               EDUCATION
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {EDUCATION.map((edu, idx) => (
-              <div key={idx} className="border-2 border-[#111827] bg-[#ffffff] p-8 relative shadow-[4px_4px_0px_rgba(17,24,39,0.1)]">
-                {edu.duration && (
-                  <div className="absolute top-0 right-0 border-b-2 border-l-2 border-[#111827] px-3 py-1 font-mono text-xs font-bold bg-[#e8e6e1]">
-                    {edu.duration}
+              <div key={idx} className="border-2 border-[#111827] bg-[#ffffff] p-6 relative shadow-[4px_4px_0px_#111827] hover:-translate-y-1 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="p-2 border-2 border-[#111827] bg-[#cffafe] shadow-[2px_2px_0px_#111827] inline-block">
+                      <GraduationCap size={24} className="text-[#111827]" />
+                    </span>
+                    {edu.duration && (
+                      <span className="border-2 border-[#111827] px-3 py-1 font-mono text-xs font-bold bg-[#e8e6e1] shadow-[2px_2px_0px_#111827]">
+                        {edu.duration}
+                      </span>
+                    )}
                   </div>
-                )}
-                <h3 className="font-bold text-xl mb-1 font-mono">{edu.degree}</h3>
-                <h4 className="text-md font-semibold text-gray-700 mb-4">{edu.institution}</h4>
-                {edu.description && <p className="text-sm text-gray-600 mb-4">{edu.description}</p>}
+                  {/* Prominent Institution Name */}
+                  <h3 className="font-bold text-xl md:text-2xl text-[#111827] font-mono tracking-tight mb-2 uppercase">
+                    {edu.institution}
+                  </h3>
+                  {/* Degree Sub-header */}
+                  <div className="border-t-2 border-[#111827] pt-3 mt-3">
+                    <h4 className="text-sm md:text-base font-semibold text-gray-800 font-sans leading-snug">
+                      {edu.degree}
+                    </h4>
+                  </div>
+                </div>
+                {edu.description && <p className="text-xs text-gray-600 mt-4 leading-relaxed">{edu.description}</p>}
               </div>
             ))}
           </div>
@@ -524,31 +544,15 @@ export default function Portfolio() {
 
         {/* ── PROJECTS SECTION ── */}
         <section id="projects" className="py-20 border-t-2 border-[#111827]">
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold font-mono tracking-widest uppercase mb-2">Projects <Smiley /></h2>
+          <div className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div className="border-2 border-[#111827] px-6 py-2 bg-[#e8e6e1] text-xl md:text-3xl font-mono font-bold tracking-widest inline-block shadow-[4px_4px_0px_#111827] mb-2 uppercase">
+                FEATURED PROJECTS <Smiley />
+              </div>
+              <p className="text-sm text-gray-700 font-mono">Explore my real-world Machine Learning, Gen AI & Software Engineering projects</p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((proj, idx) => (
-              <a 
-                key={idx} 
-                href={proj.link} 
-                target="_blank" 
-                rel="noreferrer" 
-                className="border-2 border-[#111827] bg-[#ffffff] p-6 block hover:shadow-[6px_6px_0px_#111827] hover:-translate-y-0.5 transition-all shadow-[2px_2px_0px_rgba(17,24,39,0.15)]"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-[#111827]">{proj.icon}</span>
-                </div>
-                <h3 className="font-bold font-mono text-lg mb-2">{proj.title}</h3>
-                <p className="text-sm text-gray-700 mb-4 leading-relaxed">{proj.desc}</p>
-                <div className="flex flex-wrap gap-2">
-                  {proj.tags.map(tag => (
-                    <span key={tag} className="text-xs font-mono border border-[#111827] px-2 py-1 bg-[#e8e6e1]/60">{tag}</span>
-                  ))}
-                </div>
-              </a>
-            ))}
-          </div>
+          <Project3DShowcase projects={PROJECTS} />
         </section>
 
         {/* ── CERTIFICATIONS SECTION ── */}

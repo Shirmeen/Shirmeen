@@ -137,6 +137,27 @@ const EXPERIENCE = [
   },
 ];
 
+const EDUCATION = [
+  {
+    degree: 'Bachelor of Science in Data Science',
+    institution: 'FAST-NUCES, Lahore',
+    duration: '2021 – 2025',
+    description: '',
+  },
+  {
+    degree: 'Intermediate in Computer Science (ICS - Physics)',
+    institution: 'Lahore College for Women University (LCWU)',
+    duration: '2019 – 2021',
+    description: '',
+  },
+  {
+    degree: 'Matric',
+    institution: 'Crescent Model Higher Secondary School',
+    duration: '',
+    description: '',
+  },
+];
+
 // ─── SKILLS ───────────────────────────────────────────────────────────────────
 const SKILLS = [
   {
@@ -331,13 +352,6 @@ export default function Portfolio() {
         <section id="introduction" className="py-20 border-t-2 border-[#111827]">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
             
-            {/* Image (using profile as placeholder for keyboard) */}
-            <div className="md:col-span-5 relative">
-              <div className="aspect-[4/5] bg-gray-300 border-2 border-[#111827] overflow-hidden flex items-center justify-center">
-                 {/* Re-using profile img as placeholder for now, or user can replace */}
-                 <img src={profileImage} alt="Work" className="w-full h-full object-cover opacity-80" />
-              </div>
-            </div>
 
             {/* Content */}
             <div className="md:col-span-7 pl-0 md:pl-8 space-y-6">
@@ -390,7 +404,6 @@ export default function Portfolio() {
                 </span>
               </div>
             </div>
-
           </div>
         </section>
 
@@ -481,6 +494,29 @@ export default function Portfolio() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── EDUCATION SECTION ── */}
+        <section id="education" className="py-20 border-t-2 border-[#111827]">
+          <div className="mb-16 text-center">
+            <div className="border-2 border-[#111827] px-8 py-3 bg-[#e8e6e1] text-2xl md:text-4xl font-mono font-bold tracking-widest inline-block">
+              EDUCATION
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {EDUCATION.map((edu, idx) => (
+              <div key={idx} className="border-2 border-[#111827] bg-[#ffffff] p-8 relative shadow-[4px_4px_0px_rgba(17,24,39,0.1)]">
+                {edu.duration && (
+                  <div className="absolute top-0 right-0 border-b-2 border-l-2 border-[#111827] px-3 py-1 font-mono text-xs font-bold bg-[#e8e6e1]">
+                    {edu.duration}
+                  </div>
+                )}
+                <h3 className="font-bold text-xl mb-1 font-mono">{edu.degree}</h3>
+                <h4 className="text-md font-semibold text-gray-700 mb-4">{edu.institution}</h4>
+                {edu.description && <p className="text-sm text-gray-600 mb-4">{edu.description}</p>}
               </div>
             ))}
           </div>

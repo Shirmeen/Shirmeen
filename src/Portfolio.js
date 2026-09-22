@@ -1,67 +1,16 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import profileImage from './profile.png';
 import { 
-  Puzzle, Award, Briefcase, Laptop, Database, BarChart, BrainCircuit, 
-  LineChart, Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, 
-  Factory, Ghost, Music, Dices, Circle, Bot, Hand, Github, Linkedin, 
-  Mail, GraduationCap, Rocket, Keyboard, Download, MapPin, Phone, Heart, 
-  Globe, Menu, X, Check, Copy, Search, ChevronDown, RefreshCw 
+  Briefcase, Laptop, Database, BarChart, BrainCircuit, 
+  Eye, Hospital, Sparkles, Gamepad2, MessageSquare, Thermometer, 
+  Factory, Ghost, Music, Dices, Circle, Bot, 
+  GraduationCap, Rocket, Keyboard, Globe, Menu, X 
 } from 'lucide-react';
-import CertificatesDemo from './components/CertificatesDemo';
+import Certificates from './components/Certificates';
 import Project3DShowcase from './components/Project3DShowcase';
-
-// ─── HIGH-CONTRAST CYBER COLOR PALETTE ────────────────────────────────────────
-const PASTEL = {
-  lavender:   '#ffffff',
-  purple:     '#bd00ff',
-  purpleDark: '#00f0ff',
-  blue:       '#00f0ff',
-  blueMid:    '#00abff',
-  pink:       '#ff007f',
-  pinkMid:    '#ff007f',
-  mint:       '#39ff14',
-  peach:      '#ff9900',
-  yellow:     '#ffff00',
-  white:      '#ffffff',
-  text:       '#111827',
-  textSoft:   '#4b5563',
-};
-
-// ─── ROLES FOR TYPEWRITER ─────────────────────────────────────────────────────
-const ROLES = [
-  'Generative AI Engineer',
-  'Data Scientist',
-  'Deep Learning Specialist',
-  'Multi-Agent Systems Builder',
-];
-
-// ─── TECH TICKER ITEMS ───────────────────────────────────────────────────────
-const TICKER_ITEMS = [
-  { label: 'Python', emoji: '🐍' },
-  { label: 'LangChain', emoji: '🔗' },
-  { label: 'PyTorch', emoji: '🔥' },
-  { label: 'TensorFlow', emoji: '🧠' },
-  { label: 'OpenCV', emoji: '👁️' },
-  { label: 'Scikit-Learn', emoji: '📈' },
-  { label: 'Claude API', emoji: '🤖' },
-  { label: 'GANs', emoji: '🎨' },
-  { label: 'C++', emoji: '⚡' },
-  { label: 'Docker', emoji: '🐳' },
-  { label: 'Django', emoji: '🌿' },
-  { label: 'SvelteKit', emoji: '🔶' },
-  { label: 'React', emoji: '⚛️' },
-  { label: 'SQL', emoji: '🗄️' },
-  { label: 'Power BI', emoji: '📊' },
-  { label: 'Stable Diffusion', emoji: '🖌️' },
-  { label: 'VAEs', emoji: '🧊' },
-  { label: 'CLIP', emoji: '🖼️' },
-  { label: 'NLP', emoji: '💬' },
-  { label: 'Bayesian GNN', emoji: '🔮' },
-];
 
 // ─── HERO DATA ────────────────────────────────────────────────────────────────
 const HERO_DATA = {
-  hello: "Hello, I'm",
   name: 'Shirmeen Aamir',
   description: (
     <span className="leading-relaxed">
@@ -88,19 +37,6 @@ const HERO_DATA = {
       </span>
     </span>
   ),
-  badges: [
-    { text: 'AI Engineer', icon: <Bot size={16} />, className: 'absolute top-8 -left-4 sm:-left-8 md:-left-12 pastel-card px-4 py-2 rounded-xl flex items-center gap-2 z-20 animate-bobble border-cyan-500/30', style: { boxShadow: '0 8px 24px rgba(0,240,255,0.2)' }, colorClass: 'text-cyan-800 font-mono-tech' },
-    { text: 'Gen AI', icon: <BrainCircuit size={16} />, className: 'absolute bottom-8 -right-4 sm:-right-6 md:-right-10 pastel-card px-4 py-2 rounded-xl flex items-center gap-2 z-20 animate-float3d-delay border-purple-500/30', style: { boxShadow: '0 8px 24px rgba(189,0,255,0.2)' }, colorClass: 'text-purple-800 font-mono-tech' }
-  ],
-  buttons: [
-    { label: 'GitHub', icon: <Github size={20} />, href: 'https://github.com/Shirmeen', bg: 'linear-gradient(135deg,#0c0919,#1b133a)', color: '#00f0ff' },
-    { label: 'LinkedIn', icon: <Linkedin size={20} />, href: 'https://linkedin.com/in/shirmeen-amir-35ab81264', bg: 'linear-gradient(135deg,#0a66c2,#0e86d4)', color: '#fff' },
-    { label: 'Email', icon: <Mail size={20} />, href: 'mailto:shirmeenaamir112@gmail.com', bg: 'linear-gradient(135deg,#bd00ff,#ff007f)', color: '#fff' }
-  ],
-  theme: {
-    accent: '#00f0ff',
-    textColor: '#00f0ff'
-  }
 };
 
 // ─── WORK EXPERIENCE ─────────────────────────────────────────────────────────
@@ -231,23 +167,6 @@ const PROJECTS = [
 ];
 
 // ─── STATS ────────────────────────────────────────────────────────────────────
-const STATS = [
-  { label: 'Projects',       value: `${PROJECTS.length}+`, icon: <Puzzle size={24} />, bg: '#ffffff', accent: '#bd00ff' },
-  { label: 'Certifications', value: '6',                   icon: <Award size={24} />, bg: '#ffffff', accent: '#ff007f' },
-  { label: 'Years Exp.',     value: '1+',                  icon: <Briefcase size={24} />, bg: '#ffffff', accent: '#00f0ff' },
-  { label: 'Skills',         value: '16+',                 icon: <Laptop size={24} />, bg: '#ffffff', accent: '#39ff14' },
-];
-
-// ─── CERTIFICATIONS ───────────────────────────────────────────────────────────
-const CERTS = [
-  { name: 'Intro to Programming', platform: 'Kaggle', icon: <BarChart size={20} />, bg: '#ffffff', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming', year: '2023' },
-  { name: 'Intro to SQL', platform: 'Kaggle', icon: <Database size={20} />, bg: '#ffffff', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql', year: '2023' },
-  { name: 'Data Visualization', platform: 'Kaggle', icon: <LineChart size={20} />, bg: '#ffffff', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization', year: '2023' },
-  { name: 'Intro to Deep Learning', platform: 'Kaggle', icon: <BrainCircuit size={20} />, bg: '#ffffff', accent: '#0891b2', link: 'https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning', year: '2024' },
-  { name: 'Multi AI Agent Systems', platform: 'DeepLearning.AI', icon: <Bot size={32} />, bg: '#ffffff', accent: '#c026d3', link: 'https://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89', year: '2024' },
-  { name: '10Pearls University', platform: '10Pearls', icon: <GraduationCap size={32} />, bg: '#ffffff', accent: '#4f46e5', link: 'https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403', year: '2024' },
-];
-
 // ─── SVG ICONS ────────────────────────────────────────────────────────────────
 const DrawnArrow = () => (
   <svg width="160" height="90" viewBox="0 0 160 90" className="drawn-arrow w-36 h-20 md:w-44 md:h-24 pointer-events-none" style={{ zIndex: 10 }}>
@@ -265,17 +184,38 @@ const Smiley = () => (
   </svg>
 );
 
+const SECTIONS_LIST = ['about', 'introduction', 'services', 'experience', 'projects', 'certifications', 'contact'];
+
 // ─── MAIN PORTFOLIO COMPONENT ─────────────────────────────────────────────────
 export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
-  const SECTIONS_LIST = ['about', 'introduction', 'services', 'experience', 'projects', 'certifications', 'contact'];
 
   const scrollToSection = (id) => {
     setMobileMenuOpen(false);
+    setActiveSection(id);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (const sectionId of SECTIONS_LIST) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen relative text-[#111827]" style={{ backgroundColor: '#e8e6e1' }}>
@@ -560,7 +500,7 @@ export default function Portfolio() {
           <div className="mb-12">
             <h2 className="text-2xl font-bold font-mono tracking-widest uppercase mb-2">Certifications</h2>
           </div>
-          <CertificatesDemo />
+          <Certificates />
         </section>
 
       </main>

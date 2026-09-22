@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { LazyMotion, domAnimation, m } from "motion/react";
 import { Pin } from "lucide-react";
@@ -36,14 +34,8 @@ const Card = ({
     blue: "bg-[#eff6ff]",
     purple: "bg-[#faf5ff]",
   };
-  const defaultAccentColors = {
-    orange: "#ea580c",
-    blue: "#2563eb",
-    purple: "#7c3aed",
-  };
 
   const bgColor = customColors?.bg || defaultBgColors[colorTheme];
-  const accentColor = defaultAccentColors[colorTheme];
 
   const Wrapper = link ? "a" : "div";
   const wrapperProps = link
@@ -107,7 +99,7 @@ export interface StepPosition {
   rotate?: string;
 }
 
-export interface HowItWorksProps {
+export interface CertificatesProps {
   features?: Step[];
   className?: string;
   stepPositions?: StepPosition[];
@@ -131,51 +123,51 @@ const DEFAULT_CARD_POSITIONS: StepPosition[] = [
   },
 ];
 
-export default function HowItWorks({
+const DEFAULT_CERTIFICATES: Step[] = [
+  {
+    title: "Intro to Programming",
+    description: "Completed Kaggle's Intro to Programming course, covering Python fundamentals and essential coding concepts.",
+    link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming",
+    colorTheme: "orange",
+  },
+  {
+    title: "Intro to SQL",
+    description: "Learned how to query and manipulate data using SQL through Kaggle's hands-on course.",
+    link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql",
+    colorTheme: "blue",
+  },
+  {
+    title: "Data Visualization",
+    description: "Mastered data visualization techniques using Python libraries through Kaggle's certification course.",
+    link: "https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization",
+    colorTheme: "purple",
+  },
+  {
+    title: "Intro to Deep Learning",
+    description: "Gained foundational deep learning skills including neural networks and model training via Kaggle.",
+    link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning",
+    colorTheme: "orange",
+  },
+  {
+    title: "Multi AI Agent Systems",
+    description: "Completed DeepLearning.AI's course on building and orchestrating multi-agent AI systems.",
+    link: "http://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89",
+    colorTheme: "blue",
+  },
+  {
+    title: "10Pearls University Certificate",
+    description: "Earned a certificate from 10Pearls University for completing their tech-focused training program.",
+    link: "https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403",
+    colorTheme: "purple",
+  },
+];
+
+export default function Certificates({
   features,
   className,
   stepPositions,
-}: HowItWorksProps) {
-  const defaultFeatures: Step[] = [
-    {
-      title: "Intro to Programming",
-      description: "Completed Kaggle's Intro to Programming course, covering Python fundamentals and essential coding concepts.",
-      link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-programming",
-      colorTheme: "orange",
-    },
-    {
-      title: "Intro to SQL",
-      description: "Learned how to query and manipulate data using SQL through Kaggle's hands-on course.",
-      link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-sql",
-      colorTheme: "blue",
-    },
-    {
-      title: "Data Visualization",
-      description: "Mastered data visualization techniques using Python libraries through Kaggle's certification course.",
-      link: "https://www.kaggle.com/learn/certification/shirmeenaamir/data-visualization",
-      colorTheme: "purple",
-    },
-    {
-      title: "Intro to Deep Learning",
-      description: "Gained foundational deep learning skills including neural networks and model training via Kaggle.",
-      link: "https://www.kaggle.com/learn/certification/shirmeenaamir/intro-to-deep-learning",
-      colorTheme: "orange",
-    },
-    {
-      title: "Multi AI Agent Systems",
-      description: "Completed DeepLearning.AI's course on building and orchestrating multi-agent AI systems.",
-      link: "http://learn.deeplearning.ai/accomplishments/b60fc0e8-55fb-4aca-bcbf-5929472d5c89",
-      colorTheme: "blue",
-    },
-    {
-      title: "10Pearls University Certificate",
-      description: "Earned a certificate from 10Pearls University for completing their tech-focused training program.",
-      link: "https://10pearlsuniversity.org/view-certificate/?cid=10PUC-6efc0be387dc98490e8a7165e27cedd46c33724bea620f84195311403",
-      colorTheme: "purple",
-    },
-  ];
-
-  const data = features && features.length > 0 ? features : defaultFeatures;
+}: CertificatesProps) {
+  const data = features && features.length > 0 ? features : DEFAULT_CERTIFICATES;
   const positions = stepPositions || DEFAULT_CARD_POSITIONS;
 
   let height = 1130;

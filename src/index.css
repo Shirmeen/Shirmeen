@@ -46,6 +46,13 @@ body {
   transform: rotate(4deg);
 }
 
+/* Keep scrapbook name boxes contained within narrow viewports */
+.scrapbook-box {
+  max-width: min(90vw, 100%);
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
 .grayscale-img {
   filter: grayscale(100%) contrast(1.1);
 }
@@ -77,11 +84,13 @@ body {
 
 /* Accessibility: Respect user reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .animate-float-hero,
-  .animate-float-surname,
-  .drawn-arrow path {
-    animation: none !important;
-    transform: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

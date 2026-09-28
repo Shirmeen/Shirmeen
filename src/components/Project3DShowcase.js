@@ -1,29 +1,73 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ExternalLink, Github, ChevronLeft, ChevronRight, Play, Pause, Grid, Layers, Sparkles, ArrowUpRight } from 'lucide-react';
+import OrbitCardStack from './ui/orbit-card-stack';
+
+const FEATURED_PROJECT_TITLES = [
+  'ADetectPro (FYP)',
+  'Generative AI Models',
+  'EmoNet',
+  'Smart Gaming Picks',
+  'AI Workshop',
+];
 
 export default function Project3DShowcase({ projects }) {
-  const [viewMode, setViewMode] = useState('3d'); // 3d circular ring
+  const [viewMode, setViewMode] = useState('orbit'); // 'orbit' | '3d' | 'grid'
   const [phase, setPhase] = useState(0);
   const [isAutoSpinning, setIsAutoSpinning] = useState(true);
-  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeCategory, setActiveCategory] = useState('Featured');
   const [isHovered, setIsHovered] = useState(false);
   
   const animRef = useRef(null);
   const lastTimeRef = useRef(null);
 
   // Filter categories
-  const categories = ['All', 'Gen AI', 'Deep Learning', 'C++', 'Web Application', 'ML'];
+  const categories = ['Featured', 'Gen AI', 'Deep Learning', 'C++', 'Web Application', 'ML', 'All'];
   
-  const filteredProjects = activeCategory === 'All' 
-    ? projects 
-    : projects.filter(p => p.tags.some(t => t.toLowerCase().includes(activeCategory.toLowerCase())));
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === 'Featured') {
+      const featured = projects.filter((p) => FEATURED_PROJECT_TITLES.includes(p.title));
+      return featured.length ? featured : projects.slice(0, 5);
+    }
+    if (activeCategory === 'All') {
+      return projects;
+    }
+    return projects.filter((p) =>
+      p.tags && p.tags.some((t) => t.toLowerCase().includes(activeCategory.toLowerCase()))
+    );
+  }, [projects, activeCategory]);
+
+  // Convert to OrbitStackItem format
+  const orbitItems = useMemo(() => {
+    return filteredProjects.map((p) => ({
+      name: p.title,
+      role: p.tags && p.tags.length ? p.tags.slice(0, 2).join(' • ').toUpperCase() : 'PROJECT',
+      description: p.desc,
+      accent: p.accent || '#00f0ff',
+      icon: p.icon,
+      link: p.link,
+      live: p.live,
+      tags: p.tags,
+      stat: p.tags && p.tags[0] ? p.tags[0] : 'Featured',
+    }));
+  }, [filteredProjects]);
+
+  const [activeOrbitItem, setActiveOrbitItem] = useState(null);
+
+  useEffect(() => {
+    if (orbitItems.length > 0) {
+      const defIdx = Math.min(2, Math.max(0, orbitItems.length - 1));
+      setActiveOrbitItem(orbitItems[defIdx]);
+    } else {
+      setActiveOrbitItem(null);
+    }
+  }, [orbitItems]);
 
   const totalCards = filteredProjects.length;
   // 3D Cylinder radius and step
   const radius = 680;
   const step = 360 / Math.max(1, totalCards);
 
-  // Smooth continuous circular rotation loop
+  // Smooth continuous circular rotation loop for 3D Ring mode
   const tick = useCallback((timestamp) => {
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
     const dt = Math.min((timestamp - lastTimeRef.current) / 1000, 0.1);
@@ -54,7 +98,7 @@ export default function Project3DShowcase({ projects }) {
   return (
     <div className="w-full relative my-4">
       {/* ── CONTROLS & CATEGORY FILTERS ── */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
         {/* Category Filters */}
         <div className="flex flex-wrap gap-2">
           {categories.map((cat) => (
@@ -75,7 +119,7 @@ export default function Project3DShowcase({ projects }) {
           ))}
         </div>
 
-        {/* View Mode Toggle & Auto-spin controls */}
+        {/* View Mode Toggle */}
         <div className="flex items-center gap-3">
           {viewMode === '3d' && (
             <button
@@ -89,6 +133,15 @@ export default function Project3DShowcase({ projects }) {
           )}
 
           <div className="border-2 border-[#111827] bg-[#ffffff] p-1 flex items-center gap-1 shadow-[2px_2px_0px_#111827]">
+            <button
+              onClick={() => setViewMode('orbit')}
+              className={`flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-bold transition-all ${
+                viewMode === 'orbit' ? 'bg-[#111827] text-white shadow-[2px_2px_0px_#00f0ff]' : 'text-[#111827] hover:bg-gray-100'
+              }`}
+            >
+              <Sparkles size={14} />
+              <span>ORBIT STACK</span>
+            </button>
             <button
               onClick={() => setViewMode('3d')}
               className={`flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-bold transition-all ${
@@ -111,14 +164,69 @@ export default function Project3DShowcase({ projects }) {
         </div>
       </div>
 
-      {/* ── 3D CIRCULAR RING SHOWCASE ── */}
-      {viewMode === '3d' ? (
+      {/* ── 1. ORBIT CARD STACK VIEW (CLEAN - NO BACKGROUND BOX) ── */}
+      {viewMode === 'orbit' && (
+        <section className="space-y-6">
+          {/* Currently Viewing Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <p className="text-sm font-medium text-gray-500 font-mono">
+                Currently viewing
+              </p>
+              <h2 className="text-2xl md:text-3xl font-semibold font-mono text-[#111827]">
+                {activeOrbitItem ? activeOrbitItem.name : ''}
+              </h2>
+            </div>
+            {activeOrbitItem && (
+              <div className="flex items-center gap-2">
+                {activeOrbitItem.live && (
+                  <a
+                    href={activeOrbitItem.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-[#111827] bg-[#cffafe] hover:bg-[#38bdf8] text-[#111827] font-mono font-bold text-xs shadow-[2px_2px_0px_#111827] transition-all hover:-translate-y-0.5"
+                  >
+                    <ExternalLink size={13} />
+                    <span>LIVE DEMO</span>
+                  </a>
+                )}
+                {activeOrbitItem.link && (
+                  <a
+                    href={activeOrbitItem.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-[#111827] bg-[#111827] text-white hover:bg-gray-800 font-mono font-bold text-xs shadow-[2px_2px_0px_#00f0ff] transition-all hover:-translate-y-0.5"
+                  >
+                    <Github size={13} />
+                    <span>VIEW REPOSITORY</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Clean Floating Orbit Card Stack (No Background Box) */}
+          <div className="h-[620px] w-full flex items-center justify-center">
+            <OrbitCardStack
+              items={orbitItems}
+              defaultActiveIndex={Math.min(2, Math.max(0, orbitItems.length - 1))}
+              spread={150}
+              lift={40}
+              onActiveChange={(item) => setActiveOrbitItem(item)}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* ── 2. 3D CIRCULAR RING SHOWCASE ── */}
+      {viewMode === '3d' && (
         <div 
           className="relative w-full h-[520px] md:h-[580px] overflow-hidden border-2 border-[#111827] bg-[#e8e6e1] rounded-xl flex items-center justify-center shadow-[6px_6px_0px_#111827]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Background Grid Pattern matching site theme */}
+          {/* Background Grid Pattern */}
           <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#111827_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
 
           {/* 3D Perspective Ring Stage */}
@@ -136,12 +244,10 @@ export default function Project3DShowcase({ projects }) {
               }}
             >
               {filteredProjects.map((proj, i) => {
-                // Angle math per card
                 const rawAngle = i * step + phase;
-                const angle = ((rawAngle % 360) + 540) % 360 - 180; // signed angle -180..180
+                const angle = ((rawAngle % 360) + 540) % 360 - 180;
                 const absAngle = Math.abs(angle);
 
-                // Cull back half cards (> 48 deg) so front cards remain spacious and non-overlapping!
                 if (absAngle > 48) return null;
 
                 const rad = (angle * Math.PI) / 180;
@@ -179,7 +285,6 @@ export default function Project3DShowcase({ projects }) {
                           {proj.icon}
                         </span>
 
-                        {/* Prominent Repo & Live Links */}
                         <div className="flex gap-2 z-20">
                           {proj.live && (
                             <a
@@ -234,7 +339,6 @@ export default function Project3DShowcase({ projects }) {
                         ))}
                       </div>
 
-                      {/* Explicit Direct GitHub Button */}
                       <a
                         href={proj.link}
                         target="_blank"
@@ -275,8 +379,10 @@ export default function Project3DShowcase({ projects }) {
             <span>3D Circular Stage • {totalCards} Projects</span>
           </div>
         </div>
-      ) : (
-        /* ── GRID VIEW MODE ── */
+      )}
+
+      {/* ── 3. GRID VIEW MODE ── */}
+      {viewMode === 'grid' && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProjects.map((proj, idx) => (
             <div

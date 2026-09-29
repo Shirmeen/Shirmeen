@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { useReducedMotion } from "motion/react";
 import {
   type CSSProperties,
@@ -32,6 +32,7 @@ export interface OrbitCardStackProps {
   className?: string;
   cardClassName?: string;
   defaultActiveIndex?: number;
+  activeIndex?: number;
   spread?: number;
   lift?: number;
   onActiveChange?: (item: OrbitStackItem, index: number) => void;
@@ -176,28 +177,28 @@ export function OrbitCardStack({
   className,
   cardClassName,
   defaultActiveIndex = 2,
+  activeIndex: controlledIndex,
   spread = 150,
   lift = 40,
   onActiveChange,
 }: OrbitCardStackProps) {
   const reduceMotion = useReducedMotion() ?? false;
-  const rawCards = items.length ? items : defaultItems;
+  const list = items.length ? items : defaultItems;
+  const total = list.length;
 
-  // Max 5 cards in the visible stack to maintain the pristine Componentry deck look
-  const maxDisplay = 5;
-  const isLargeSet = rawCards.length > maxDisplay;
+  const [internalIndex, setInternalIndex] = useState(() => inRange(defaultActiveIndex, total));
+  const activeIndex = controlledIndex !== undefined ? inRange(controlledIndex, total) : internalIndex;
 
-  // If large set, keep display window around restingIndex
-  const cards = useMemo(() => {
-    if (!isLargeSet) return rawCards;
-    return rawCards.slice(0, maxDisplay);
-  }, [rawCards, isLargeSet]);
-
-  const restingIndex = inRange(defaultActiveIndex, cards.length);
-  const [activeIndex, setActiveIndex] = useState(restingIndex);
   const [open, setOpen] = useState(false);
+  const [hoveredOffset, setHoveredOffset] = useState<number | null>(null);
   const stageRef = useRef<HTMLDivElement>(null);
-  const midpoint = (cards.length - 1) / 2;
+
+  // Sync internal index if controlledIndex updates
+  useEffect(() => {
+    if (controlledIndex !== undefined) {
+      setInternalIndex(controlledIndex);
+    }
+  }, [controlledIndex]);
 
   // Responsive spread for mobile
   const [effectiveSpread, setEffectiveSpread] = useState(spread);
@@ -218,39 +219,44 @@ export function OrbitCardStack({
     return () => window.removeEventListener("resize", updateSpread);
   }, [spread]);
 
-  const layouts = useMemo(
-    () =>
-      cards.map((_, index) => {
-        const orbit = index - midpoint;
-        const stack = index - restingIndex;
-        // Clamp closed stack so deck remains tightly structured
-        const clampedStack = Math.max(-2, Math.min(2, stack));
-        return {
-          open: {
-            x: orbit * effectiveSpread,
-            y: Math.abs(orbit) * 30 + Math.max(0, Math.abs(orbit) - 1) * 10,
-            rotation: orbit * 8.5,
-          },
-          closed: {
-            x: clampedStack * 10,
-            y: Math.abs(clampedStack) * 5,
-            rotation: clampedStack * 2.8,
-          },
-        };
-      }),
-    [cards, midpoint, restingIndex, effectiveSpread]
-  );
+  // Visible slots in the deck:
+  // If total <= 5: normal indices around midpoint
+  // If total > 5: revolving window of 5 cards around activeIndex (-2, -1, 0, 1, 2)
+  const isLarge = total > 5;
+  const visibleCards = useMemo(() => {
+    if (!isLarge) {
+      const midpoint = (total - 1) / 2;
+      return list.map((item, idx) => ({
+        item,
+        actualIndex: idx,
+        offset: idx - midpoint,
+        stackOffset: idx - activeIndex,
+      }));
+    }
 
-  const activate = (index: number) => {
-    const next = inRange(index, cards.length);
+    // Revolving deck of 5 cards around activeIndex
+    const offsets = [-2, -1, 0, 1, 2];
+    return offsets.map((k) => {
+      const actualIndex = (activeIndex + k + total) % total;
+      return {
+        item: list[actualIndex]!,
+        actualIndex,
+        offset: k,
+        stackOffset: k,
+      };
+    });
+  }, [list, total, isLarge, activeIndex]);
+
+  const selectIndex = (nextIndex: number) => {
+    const valid = inRange(nextIndex, total);
     setOpen(true);
-    setActiveIndex(next);
-    onActiveChange?.(cards[next]!, next);
+    setInternalIndex(valid);
+    onActiveChange?.(list[valid]!, valid);
   };
 
   const close = () => {
     setOpen(false);
-    setActiveIndex(restingIndex);
+    setHoveredOffset(null);
   };
 
   const leaveFocus = (event: FocusEvent<HTMLDivElement>) => {
@@ -272,50 +278,66 @@ export function OrbitCardStack({
         role="list"
         aria-label="Orbit card stack"
       >
-        {cards.map((item, index) => {
-          const position = open ? layouts[index]!.open : layouts[index]!.closed;
-          const active = index === activeIndex;
+        {visibleCards.map(({ item, actualIndex, offset, stackOffset }) => {
+          const isCenter = actualIndex === activeIndex;
+          const isHovered = hoveredOffset === offset;
+
+          // Open fan out position
+          const openX = offset * effectiveSpread;
+          const openY = Math.abs(offset) * 30 + Math.max(0, Math.abs(offset) - 1) * 10;
+          const openRotation = offset * 8.5;
+
+          // Closed stack position
+          const clampedStack = Math.max(-2, Math.min(2, stackOffset));
+          const closedX = clampedStack * 10;
+          const closedY = Math.abs(clampedStack) * 5;
+          const closedRotation = clampedStack * 2.8;
+
+          const posX = open ? openX : closedX;
+          const posY = open ? openY : closedY;
+          const rotation = open ? openRotation : closedRotation;
+          const isLifted = open && (isHovered || (hoveredOffset === null && isCenter));
+
           const style: CSSProperties = {
-            zIndex: active ? 80 : 50 - Math.abs(index - activeIndex),
-            transform: `translate(calc(-50% + ${position.x}px), calc(-50% + ${
-              position.y - (open && active ? lift : 0)
-            }px)) rotate(${position.rotation}deg) scale(${open ? 0.985 : 0.97})`,
+            zIndex: isCenter ? 80 : 50 - Math.abs(offset),
+            transform: `translate(calc(-50% + ${posX}px), calc(-50% + ${
+              posY - (isLifted ? lift : 0)
+            }px)) rotate(${rotation}deg) scale(${open ? 0.985 : 0.97})`,
             transitionDuration: reduceMotion ? "0ms" : "420ms",
           };
 
-          const primaryLink = item.live || item.link;
+          const primaryLink = item.link || item.live;
 
           return (
             <article
-              key={`${item.name}-${index}`}
+              key={`${item.name}-${actualIndex}`}
               role="listitem"
               tabIndex={0}
-              aria-current={active ? "true" : undefined}
+              aria-current={isCenter ? "true" : undefined}
               className={cn(
                 "absolute left-1/2 top-1/2 w-[min(78vw,21rem)] origin-bottom cursor-pointer rounded-[1.9rem] border border-black/10 bg-[#e9e6df] p-4 text-[#141414] outline-none shadow-md",
                 "transition-[transform] ease-[cubic-bezier(.2,.8,.2,1)] focus-visible:ring-2 focus-visible:ring-zinc-950/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
                 cardClassName
               )}
               style={style}
-              onMouseEnter={() => activate(index)}
-              onFocus={() => activate(index)}
-              onClick={() => activate(index)}
+              onMouseEnter={() => {
+                setOpen(true);
+                setHoveredOffset(offset);
+              }}
+              onFocus={() => {
+                selectIndex(actualIndex);
+              }}
+              onClick={() => {
+                selectIndex(actualIndex);
+              }}
               onKeyDown={(event) => {
                 if (event.key === "ArrowRight" || event.key === "ArrowDown") {
                   event.preventDefault();
-                  const next = (index + 1) % cards.length;
-                  activate(next);
-                  stageRef.current
-                    ?.querySelectorAll<HTMLElement>("[role=listitem]")
-                    [next]?.focus();
+                  selectIndex((activeIndex + 1) % total);
                 }
                 if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
                   event.preventDefault();
-                  const next = (index - 1 + cards.length) % cards.length;
-                  activate(next);
-                  stageRef.current
-                    ?.querySelectorAll<HTMLElement>("[role=listitem]")
-                    [next]?.focus();
+                  selectIndex((activeIndex - 1 + total) % total);
                 }
                 if (event.key === "Escape") {
                   event.currentTarget.blur();
@@ -329,10 +351,10 @@ export function OrbitCardStack({
                   <a
                     href={primaryLink}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-zinc-950 text-white shadow-lg shadow-black/20 hover:scale-110 hover:bg-zinc-800 transition-all z-10"
-                    title={`Open ${item.name}`}
+                    className="absolute right-3 top-3 grid size-11 place-items-center rounded-full bg-zinc-950 text-white shadow-lg shadow-black/20 hover:scale-110 hover:bg-zinc-800 transition-all z-20 cursor-pointer"
+                    title={item.link ? `Open GitHub repository for ${item.name}` : `Open ${item.name}`}
                   >
                     <ArrowUpRight className="size-4" aria-hidden />
                   </a>
@@ -365,12 +387,33 @@ export function OrbitCardStack({
                 </p>
 
                 <div className="mt-5 border-t border-black/10 pt-4 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-zinc-500 flex items-center justify-between font-mono">
-                  <span>{item.stat ?? "Featured"}</span>
-                  {primaryLink && (
-                    <span className="inline-flex items-center gap-1 text-zinc-950 hover:underline">
-                      {item.live ? "DEMO" : "REPO"} <ArrowUpRight className="size-3" />
-                    </span>
-                  )}
+                  <span className="truncate max-w-[85px] sm:max-w-[100px]">{item.stat ?? "Featured"}</span>
+                  <div className="flex items-center gap-3 shrink-0">
+                    {item.live && (
+                      <a
+                        href={item.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 font-bold text-zinc-700 hover:text-black hover:underline cursor-pointer transition-colors"
+                        title={`Open live demo for ${item.name}`}
+                      >
+                        DEMO <ArrowUpRight className="size-3" />
+                      </a>
+                    )}
+                    {item.link && (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 font-bold text-zinc-950 hover:text-black hover:underline cursor-pointer transition-colors"
+                        title={`Open GitHub repository for ${item.name}`}
+                      >
+                        <Github className="size-3" /> REPO <ArrowUpRight className="size-3" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </article>

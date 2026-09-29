@@ -105,6 +105,44 @@ class ShirmeenAamir:
 
 ---
 
+### 🗂️ Project Structure
+
+This portfolio is a React (Create React App) single-page application with a component-per-section architecture.
+
+```
+src/
+├── Portfolio.js                      # Root orchestrator — scroll state & layout only
+├── data/
+│   ├── heroData.js                   # HERO_DATA (name, description) + SECTIONS_LIST
+│   ├── experience.js                 # EXPERIENCE & EDUCATION arrays
+│   ├── skills.js                     # SKILLS categories with icons
+│   └── projects.js                   # PROJECTS array (19 projects)
+└── components/
+    ├── Navbar.js                     # Fixed nav bar + mobile dropdown menu
+    ├── Certificates.tsx              # Certifications card layout (TypeScript)
+    ├── Project3DShowcase.js          # Orbit card stack + grid view for projects
+    ├── TeamPreview.tsx               # (Unused demo component)
+    ├── sections/
+    │   ├── HeroSection.js            # Hero — name, photo, animated title
+    │   ├── IntroductionSection.js    # About me, focus pillars, quick badges
+    │   ├── ServicesSection.js        # Services offered (4 service cards)
+    │   ├── ExperienceSection.js      # Work experience + Education cards
+    │   ├── ProjectsSection.js        # Featured projects showcase
+    │   ├── CertificationsSection.js  # Certifications grid
+    │   └── ContactSection.js         # Contact links + Footer
+    └── ui/
+        └── orbit-card-stack.tsx      # Animated orbit/fan card deck (TypeScript)
+```
+
+**Content editing guide:**
+- To update personal info or nav sections → edit [`src/data/heroData.js`](src/data/heroData.js)
+- To update work/education history → edit [`src/data/experience.js`](src/data/experience.js)
+- To update skill categories → edit [`src/data/skills.js`](src/data/skills.js)
+- To add/remove projects → edit [`src/data/projects.js`](src/data/projects.js)
+- To change a section's layout/styling → edit the matching file in [`src/components/sections/`](src/components/sections/)
+
+---
+
 ### 🚀 Run & Deploy
 
 #### 1. Install Dependencies
@@ -119,11 +157,17 @@ npm start
 ```
 *Starts the local development server at `http://localhost:3000`.*
 
-#### 3. Deploy to GitHub Pages
+#### 3. Build for Production
+```bash
+npm run build
+```
+*Creates an optimized production bundle in the `build/` folder.*
+
+#### 4. Deploy to GitHub Pages
 ```bash
 npm run deploy
 ```
-*Builds the production bundle and publishes live to [shirmeen.github.io/Shirmeen](https://shirmeen.github.io/Shirmeen/)*.
+*Builds the production bundle and publishes live to [shirmeen.github.io/Shirmeen](https://shirmeen.github.io/Shirmeen/).*
 
 ---
 
